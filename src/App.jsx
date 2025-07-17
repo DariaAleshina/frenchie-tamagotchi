@@ -6,11 +6,12 @@ import StatBar from './components/StatBar';
 import './App.css';
 
 const MAX_SCORE = 100;
+const INITIAL_SCORE = 80;
 
 function App() {
-  const [fullness, setFullness] = useState(MAX_SCORE);
-  const [happiness, setHappiness] = useState(MAX_SCORE);
-  const [energy, setEnergy] = useState(MAX_SCORE);
+  const [fullness, setFullness] = useState(INITIAL_SCORE);
+  const [happiness, setHappiness] = useState(INITIAL_SCORE);
+  const [energy, setEnergy] = useState(INITIAL_SCORE);
   const [isGameOver, setIsGameOver] = useState(false);
 
   useEffect(() => {
@@ -23,9 +24,9 @@ function App() {
   useEffect(() => {
     if (isGameOver) return;
     const interval = setInterval(() => {
-      setFullness(f => Math.max(f - 4, 0));
+      setFullness(f => Math.max(f - 2, 0));
       setHappiness(h => Math.max(h - 3, 0));
-      setEnergy(e => Math.max(e - 2, 0));
+      setEnergy(e => Math.max(e - 4, 0));
     }, 2000); // every N seconds
 
     return () => clearInterval(interval);
@@ -47,9 +48,9 @@ function App() {
   }
 
   function handleReset() {
-    setFullness(MAX_SCORE);
-    setHappiness(MAX_SCORE);
-    setEnergy(MAX_SCORE);
+    setFullness(INITIAL_SCORE);
+    setHappiness(INITIAL_SCORE);
+    setEnergy(INITIAL_SCORE);
     setIsGameOver(false);
   }
 

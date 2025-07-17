@@ -9,10 +9,14 @@ export default function StatBar({ fullness, happiness, energy }) {
 }
 
 function StatElement({ children, score }) {
+  let scoreColor;
+  if (score <= 50) scoreColor = 'text-[#C18A26]';
+  if (score <= 30) scoreColor = 'text-[#F25A51]';
+
   return (
     <div className="flex flex-col justify-center items-center gap-1 md:gap-2">
       <p>{children}</p>
-      <p>{score}</p>
+      <p className={scoreColor}>{score}</p>
     </div>
   );
 }

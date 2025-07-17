@@ -3,6 +3,7 @@ import sadImg from '../assets/frenchie-sad.png';
 import sleepyImg from '../assets/frenchie-sleepy.png';
 import hungryImg from '../assets/frenchie-hungry.png';
 import normalImg from '../assets/frenchie-normal.png';
+import gameOverImg from '../assets/frenchie-gameover.png';
 
 export default function PetDisplay({
   fullness,
@@ -14,25 +15,25 @@ export default function PetDisplay({
   let image;
 
   if (isGameOver) {
-    image = sadImg;
+    image = gameOverImg;
   }
 
   if (!isGameOver) {
-    if (happiness >= 80) {
+    if (happiness > 80) {
       message = 'Happy';
       image = happyImg;
     }
-    if (happiness < 80) {
-      message = 'Feels Good';
+    if (happiness <= 80) {
+      message = 'Feels Good, but Needs Attention';
       image = normalImg;
     }
     if (happiness < 40) {
-      message = 'Got Sad';
+      message = 'Got Sad... Help Him!';
       image = sadImg;
     }
 
     if (energy < 40) {
-      message = 'Sleeping';
+      message = 'Wants to Sleep';
       image = sleepyImg;
     }
 
@@ -46,9 +47,9 @@ export default function PetDisplay({
     <>
       <img className="w-3/5 md:w-2xs" alt="Frenchie emotion" src={image} />
       {isGameOver ? (
-        <p className="font-[Anta] ">Game is Over. Start Again </p>
+        <p className="font-[Anta] ">Oh, No! Game Over – Start Again </p>
       ) : (
-        <p className="font-[Anta] ">Your Frenchie is {message}</p>
+        <p className="font-[Anta] ">Frenchie is {message}</p>
       )}
     </>
   );
