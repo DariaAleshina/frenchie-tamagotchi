@@ -21,14 +21,15 @@ function App() {
 
   // decrease stats over time
   useEffect(() => {
+    if (isGameOver) return;
     const interval = setInterval(() => {
       setFullness(f => Math.max(f - 5, 0));
       setHappiness(h => Math.max(h - 3, 0));
       setEnergy(e => Math.max(e - 2, 0));
-    }, 5000); // every 5 seconds
+    }, 1000); // every 5 seconds
 
     return () => clearInterval(interval);
-  }, []);
+  }, [isGameOver]);
 
   function handleFeed() {
     console.log('clicked to FEED');
@@ -49,11 +50,12 @@ function App() {
     setFullness(MAX_SCORE);
     setHappiness(MAX_SCORE);
     setEnergy(MAX_SCORE);
+    setIsGameOver(false);
   }
 
   return (
     <>
-      <h1 className="text-6xl mb-9">Frenchie Tamagotchi</h1>
+      <h1 className="text-3xl mb-5 md:text-6xl md:mb-9">Frenchie Tamagotchi</h1>
       <section
         className="lg:w-3xl mr-auto ml-auto flex justify-center flex-col items-center gap-5
       "
@@ -69,8 +71,14 @@ function App() {
           onFeed={handleFeed}
           onPlay={handlePlay}
           onSleep={handleSleep}
+          isGameOver={isGameOver}
         />
-        <button onClick={handleReset} className="cursor-pointer mt-5">
+        <button
+          onClick={handleReset}
+          className={`cursor-pointer py-2 px-4  ${
+            isGameOver && 'bg-[#D79F3B]'
+          }`}
+        >
           Reset the Game
         </button>
       </section>
