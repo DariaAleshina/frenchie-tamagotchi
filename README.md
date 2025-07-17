@@ -6,13 +6,12 @@ But be careful — if you neglect your pup, the game ends! 😢
 
 ---
 
-## 🧰 Tech Stack
+## ✨ Tech Stack
 
 - ⚛️ **React** – UI framework
 - ⚡ **Vite** – Fast dev server and bundler
 - 🧠 **JavaScript** – Core language
 - 🎨 **Tailwind CSS** – Utility-first styling
-- 🖼️ **PNG Assets** – For Frenchie pet visuals
 
 ---
 
@@ -22,11 +21,18 @@ But be careful — if you neglect your pup, the game ends! 😢
 - ⏳ Pet stats decrease over time
 - 🍖 Buttons to feed, play, and let your dog sleep
 - 😴 Game over screen if any stat reaches 0
-- ✅ Responsive design with Tailwind
 
 ---
 
-## 👾 This project helped reinforce important React fundamentals:
+## ✨ Design
+
+- 🖼️ PNG Assets: pet visuals generated with ChatGPT
+- Ⓜ Google Fonts: Pixelify Sans, Anta
+- ✅ Responsive with Tailwind
+
+---
+
+## ✨ This project helped reinforce important React fundamentals:
 
 - 🔄 useState – Manage pet stats like hunger, happiness, and energy
 - ⏱️ useEffect + setInterval – Auto-decrease stats over time
@@ -37,13 +43,13 @@ But be careful — if you neglect your pup, the game ends! 😢
 
 ---
 
-## 📸 Screenshots / LiveDemo
+## ✨ Screenshots / LiveDemo
 
 TBC
 
 ---
 
-## 🚀 Getting Started
+## ✨ Getting Started
 
 ```bash
 git clone https://github.com/your-username/frenchie-tamagotchi.git
