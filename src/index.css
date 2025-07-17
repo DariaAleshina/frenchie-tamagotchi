@@ -1,0 +1,30 @@
+@import 'tailwindcss';
+
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+} */
+
+@theme {
+  --color-regal-blue: #243c5a;
+}
+
+:root {
+  font-family: 'Pixelify Sans', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+
+  background-color: #fcf6e2;
+
+  /* font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; */
+}
+
+h1 {
+  /* font-size: 50px;
+  margin-bottom: 40px; */
+}
