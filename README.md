@@ -1,12 +1,53 @@
-# React + Vite
+# 🐶 Frenchie Tamagotchi
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple and cute virtual pet game built with React!  
+Take care of your French Bulldog by feeding, playing, and letting it sleep.  
+But be careful — if you neglect your pup, the game ends! 😢
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🧰 Tech Stack
 
-## Expanding the ESLint configuration
+- ⚛️ **React** – UI framework
+- ⚡ **Vite** – Fast dev server and bundler
+- 🧠 **JavaScript** – Core language
+- 🎨 **Tailwind CSS** – Utility-first styling
+- 🖼️ **PNG Assets** – For Frenchie pet visuals
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## ✨ Features
+
+- 🐾 Interactive pet with changing emotions
+- ⏳ Pet stats decrease over time
+- 🍖 Buttons to feed, play, and let your dog sleep
+- 😴 Game over screen if any stat reaches 0
+- ✅ Responsive design with Tailwind
+
+---
+
+## 👾 This project helped reinforce important React fundamentals:
+
+- 🔄 useState – Manage pet stats like hunger, happiness, and energy
+- ⏱️ useEffect + setInterval – Auto-decrease stats over time
+- 🛑 Effect cleanup – Stop interval when the game ends
+- 🎛️ Conditional rendering – Change the pet image based on state
+- 🚫 Button disabling – Disable actions when the game is over
+- 💅 Tailwind CSS – For styling layout, buttons, and responsive design
+
+---
+
+## 📸 Screenshots / LiveDemo
+
+TBC
+
+---
+
+## 🚀 Getting Started
+
+```bash
+git clone https://github.com/your-username/frenchie-tamagotchi.git
+cd frenchie-tamagotchi
+npm install
+npm run dev
+```

@@ -23,10 +23,10 @@ function App() {
   useEffect(() => {
     if (isGameOver) return;
     const interval = setInterval(() => {
-      setFullness(f => Math.max(f - 5, 0));
+      setFullness(f => Math.max(f - 4, 0));
       setHappiness(h => Math.max(h - 3, 0));
       setEnergy(e => Math.max(e - 2, 0));
-    }, 1000); // every 5 seconds
+    }, 2000); // every N seconds
 
     return () => clearInterval(interval);
   }, [isGameOver]);
