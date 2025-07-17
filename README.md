@@ -6,6 +6,13 @@ But be careful — if you neglect your pup, the game ends! 😢
 
 ---
 
+## ✨ Screenshots / LiveDemo
+
+![screenshot of the game](public/screenshot-1.png)
+LiveDemo - tbc
+
+---
+
 ## ✨ Tech Stack
 
 - ⚛️ **React** – UI framework
@@ -40,12 +47,6 @@ But be careful — if you neglect your pup, the game ends! 😢
 - 🎛️ Conditional rendering – Change the pet image based on state
 - 🚫 Button disabling – Disable actions when the game is over
 - 💅 Tailwind CSS – For styling layout, buttons, and responsive design
-
----
-
-## ✨ Screenshots / LiveDemo
-
-TBC
 
 ---
 
