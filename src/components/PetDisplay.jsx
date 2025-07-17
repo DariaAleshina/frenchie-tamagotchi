@@ -11,7 +11,7 @@ export default function PetDisplay({
   energy,
   isGameOver,
 }) {
-  let message = '';
+  let status = '';
   let image;
 
   if (isGameOver) {
@@ -20,25 +20,25 @@ export default function PetDisplay({
 
   if (!isGameOver) {
     if (happiness > 80) {
-      message = 'Happy';
+      status = 'Happy';
       image = happyImg;
     }
     if (happiness <= 80) {
-      message = 'Feels Good, but Needs Attention';
+      status = 'Feels Good, but Needs Attention';
       image = normalImg;
     }
     if (happiness < 40) {
-      message = 'Got Sad... Help Him!';
+      status = 'Got Sad... Help Him!';
       image = sadImg;
     }
 
-    if (energy < 40) {
-      message = 'Wants to Sleep';
+    if (energy <= 50) {
+      status = 'Wants to Sleep';
       image = sleepyImg;
     }
 
     if (fullness < 40) {
-      message = 'Hungry';
+      status = 'Hungry';
       image = hungryImg;
     }
   }
@@ -47,9 +47,11 @@ export default function PetDisplay({
     <>
       <img className="w-3/5 md:w-2xs" alt="Frenchie emotion" src={image} />
       {isGameOver ? (
-        <p className="font-[Anta] ">Oh, No! Game Over – Start Again </p>
+        <p className="font-[Anta] lg:text-2xl">
+          Oh, No! Game Over – Start Again{' '}
+        </p>
       ) : (
-        <p className="font-[Anta] ">Frenchie is {message}</p>
+        <p className="font-[Anta] lg:text-2xl">Frenchie is {status}</p>
       )}
     </>
   );
