@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import PetDisplay from './components/PetDisplay';
 import { ActionButtons, GameButton } from './components/ActionButtons';
 import StatBar from './components/StatBar';
+import { mediaAssets } from './mediaAssets';
 
 import './App.css';
 
@@ -20,6 +21,22 @@ function App() {
   const [playDisabled, setPlayDisabled] = useState(false);
   const [sleepDisabled, setSleepDisabled] = useState(false);
   const [rubsDisabled, setRubsDisabled] = useState(false);
+
+  // preload videos
+  useEffect(() => {
+    const { video } = mediaAssets;
+    const preloadVideo = src => {
+      const video = document.createElement('video');
+      video.src = src;
+      video.preload = 'auto';
+    };
+
+    preloadVideo(video.happy);
+    preloadVideo(video.sad);
+    preloadVideo(video.tired);
+    preloadVideo(video.normal);
+    preloadVideo(video.hungry);
+  }, []);
 
   useEffect(() => {
     if (fullness === 0 || happiness === 0 || energy === 0) {
