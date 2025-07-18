@@ -9,6 +9,7 @@ import sleepyVideo from '/videos/sleepy.mp4';
 import happyVideo from '/videos/happy.mp4';
 import normalVideo from '/videos/normal.mp4';
 import sadVideo from '/videos/sad.mp4';
+import hungryVideo from '/videos/hungry.mp4';
 
 export default function PetDisplay({
   fullness,
@@ -33,48 +34,51 @@ export default function PetDisplay({
       media = normalVideo;
       secondaryMedia = normalImg;
     }
-    if (happiness < 40) {
-      status = 'Got Sad... Help Him!';
+    if (happiness <= 60 || energy <= 60 || fullness <= 60) {
+      status = 'Sad... Help Him!';
       media = sadVideo;
       secondaryMedia = sadImg;
     }
 
-    if (energy <= 50) {
+    if (energy <= 40) {
       status = 'Wants to Sleep';
       media = sleepyVideo;
       secondaryMedia = sleepyImg;
     }
 
-    if (fullness < 40) {
+    if (fullness <= 40) {
       status = 'Hungry';
-      media = hungryImg;
+      media = hungryVideo;
       secondaryMedia = hungryImg;
     }
   }
 
   return (
     <>
-      {isGameOver ? (
-        <>
-          <img className="w-3/5 md:w-2xs" alt="Game Over" src={media} />
-          <p className="font-[Anta] lg:text-2xl">
-            Oh, No! Game Over – Start Again
-          </p>
-        </>
-      ) : (
-        <>
+      <div className="flex flex-col justify-center items-center w-3/5 md:w-2xs aspect-square bg-[#DFAF53]">
+        {isGameOver ? (
+          <img className="w-full" alt="Game Over" src={media} />
+        ) : (
           <video
+            key={status}
             src={media}
             autoPlay
             muted
             loop
             playsInline
-            className="w-3/5 md:w-2xs"
+            className="w-full"
           >
             <img src={secondaryMedia} alt="Frenchie emotion" />
           </video>
-          <p className="font-[Anta] lg:text-2xl">Frenchie is {status}</p>
-        </>
+        )}
+      </div>
+
+      {isGameOver ? (
+        <p className="font-[Anta] lg:text-2xl">
+          Oh, No! Game Over – Start Again
+        </p>
+      ) : (
+        <p className="font-[Anta] lg:text-2xl">Frenchie is {status}</p>
       )}
     </>
   );

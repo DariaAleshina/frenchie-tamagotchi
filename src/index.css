@@ -14,6 +14,27 @@
   -moz-osx-font-smoothing: grayscale; */
 }
 
+aside {
+  margin: 2rem;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+aside ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-family: 'Anta', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+/* text-sm mt-4 max-w-md text-center mx-auto */
+
 footer {
   text-align: center;
   font-family: 'Anta', sans-serif;
