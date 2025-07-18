@@ -34,7 +34,7 @@ export default function PetDisplay({
       media = normalVideo;
       secondaryMedia = normalImg;
     }
-    if (happiness <= 60 || energy <= 60 || fullness <= 60) {
+    if (happiness <= 60 || energy <= 60 || fullness <= 50) {
       status = 'Sad... Help Him!';
       media = sadVideo;
       secondaryMedia = sadImg;

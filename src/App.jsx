@@ -19,6 +19,7 @@ function App() {
   const [feedDisabled, setFeedDisabled] = useState(false);
   const [playDisabled, setPlayDisabled] = useState(false);
   const [sleepDisabled, setSleepDisabled] = useState(false);
+  const [rubsDisabled, setRubsDisabled] = useState(false);
 
   useEffect(() => {
     if (fullness === 0 || happiness === 0 || energy === 0) {
@@ -59,6 +60,15 @@ function App() {
     }, BUTTON_INACTIVE_SEC * 1000);
   }
 
+  function handleRubs() {
+    console.log('clicked to Rub Ears');
+    setHappiness(h => Math.min(h + 5, MAX_SCORE));
+    setRubsDisabled(true);
+    setTimeout(() => {
+      setRubsDisabled(false);
+    }, BUTTON_INACTIVE_SEC * 1000);
+  }
+
   function handleSleep() {
     console.log('clicked to SLEEP');
     setEnergy(e => Math.min(e + 20, MAX_SCORE));
@@ -92,14 +102,20 @@ function App() {
         <ActionButtons>
           <GameButton action={handlePlay} inactive={isGameOver || playDisabled}>
             Play 🎾
+          </GameButton>{' '}
+          <GameButton action={handleRubs} inactive={isGameOver || rubsDisabled}>
+            Ear Rubs 🤲
           </GameButton>
           <GameButton
             action={handleSleep}
-            inactive={isGameOver || sleepDisabled}
+            inactive={isGameOver || sleepDisabled || energy > 60}
           >
             Sleep 😴
           </GameButton>
-          <GameButton action={handleFeed} inactive={isGameOver || feedDisabled}>
+          <GameButton
+            action={handleFeed}
+            inactive={isGameOver || feedDisabled || fullness > 50}
+          >
             Feed 🍖
           </GameButton>
         </ActionButtons>
