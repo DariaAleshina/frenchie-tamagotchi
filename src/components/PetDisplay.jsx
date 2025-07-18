@@ -46,7 +46,7 @@ export default function PetDisplay({
       secondaryMedia = sleepyImg;
     }
 
-    if (fullness <= 40) {
+    if (fullness <= 50) {
       status = 'Hungry';
       media = hungryVideo;
       secondaryMedia = hungryImg;
