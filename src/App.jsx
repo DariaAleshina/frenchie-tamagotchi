@@ -7,7 +7,8 @@ import './App.css';
 
 const MAX_SCORE = 100;
 const INITIAL_SCORE = 80;
-const BUTTON_INACTIVE_SEC = 5;
+const INTERVAL_STAT_REDUCING_SEC = 3;
+const BUTTON_INACTIVE_SEC = 8;
 
 function App() {
   const [fullness, setFullness] = useState(INITIAL_SCORE);
@@ -32,7 +33,7 @@ function App() {
       setFullness(f => Math.max(f - 1, 0));
       setHappiness(h => Math.max(h - 2, 0));
       setEnergy(e => Math.max(e - 3, 0));
-    }, 2000); // every N seconds
+    }, INTERVAL_STAT_REDUCING_SEC * 1000); //
 
     return () => clearInterval(interval);
   }, [isGameOver]);
@@ -40,6 +41,7 @@ function App() {
   function handleFeed() {
     console.log('clicked to FEED');
     setFullness(f => Math.min(f + 15, MAX_SCORE));
+    setEnergy(e => Math.min(e + 7, MAX_SCORE));
     setFeedDisabled(true);
 
     setTimeout(() => {
@@ -50,6 +52,7 @@ function App() {
   function handlePlay() {
     console.log('clicked to Play');
     setHappiness(h => Math.min(h + 15, MAX_SCORE));
+    setEnergy(e => Math.min(e - 3, MAX_SCORE));
     setPlayDisabled(true);
     setTimeout(() => {
       setPlayDisabled(false);
