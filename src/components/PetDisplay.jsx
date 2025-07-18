@@ -1,14 +1,14 @@
-import happyImg from '../../public/frenchie-happy.png';
-import sadImg from '../../public/frenchie-sad.png';
-import sleepyImg from '../../public/frenchie-sleepy.png';
-import hungryImg from '../../public/frenchie-hungry.png';
-import normalImg from '../../public/frenchie-normal.png';
-import gameOverImg from '../../public/frenchie-gameover.png';
+import happyImg from '/img/frenchie-happy.png';
+import sadImg from '/img/frenchie-sad.png';
+import sleepyImg from '/img/frenchie-sleepy.png';
+import hungryImg from '/img/frenchie-hungry.png';
+import normalImg from '/img/frenchie-normal.png';
+import gameOverImg from '/img/frenchie-gameover.png';
 
-import sleepyVideo from '../../public/sleepy.mp4';
-import happyVideo from '../../public/happy.mp4';
-import normalVideo from '../../public/normal.mp4';
-import sadVideo from '../../public/sad.mp4';
+import sleepyVideo from '/videos/sleepy.mp4';
+import happyVideo from '/videos/happy.mp4';
+import normalVideo from '/videos/normal.mp4';
+import sadVideo from '/videos/sad.mp4';
 
 export default function PetDisplay({
   fullness,
