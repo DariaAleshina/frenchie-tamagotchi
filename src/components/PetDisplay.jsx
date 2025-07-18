@@ -66,6 +66,7 @@ export default function PetDisplay({
             muted
             loop
             playsInline
+            preload="auto"
             className="w-full"
           >
             <img src={secondaryMedia} alt="Frenchie emotion" />
