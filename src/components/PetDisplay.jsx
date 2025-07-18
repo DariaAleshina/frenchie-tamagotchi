@@ -62,6 +62,7 @@ export default function PetDisplay({
             </video>
           );
         })}
+
       </div>
       <p className="font-[Anta] lg:text-2xl">{statusMessage[activeState]}</p>
     </>
