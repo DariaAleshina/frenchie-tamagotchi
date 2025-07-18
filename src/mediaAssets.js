@@ -5,7 +5,7 @@ import hungryImg from '/img/frenchie-hungry.png';
 import normalImg from '/img/frenchie-normal.png';
 import gameOverImg from '/img/frenchie-gameover.png';
 
-import tiredVideo from '/videos/tired.mp4';
+import tiredVideo from '/videos/tired-2.mp4';
 import happyVideo from '/videos/happy.mp4';
 import normalVideo from '/videos/normal.mp4';
 import sadVideo from '/videos/sad.mp4';
