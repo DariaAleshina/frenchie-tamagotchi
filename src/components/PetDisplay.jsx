@@ -5,6 +5,11 @@ import hungryImg from '../assets/frenchie-hungry.png';
 import normalImg from '../assets/frenchie-normal.png';
 import gameOverImg from '../assets/frenchie-gameover.png';
 
+import sleepyVideo from '../assets/sleepy.mp4';
+import happyVideo from '../assets/happy.mp4';
+import normalVideo from '../assets/normal.mp4';
+import sadVideo from '../assets/sad.mp4';
+
 export default function PetDisplay({
   fullness,
   happiness,
@@ -12,46 +17,64 @@ export default function PetDisplay({
   isGameOver,
 }) {
   let status = '';
-  let image;
+  let media;
+  let secondaryMedia;
 
-  if (isGameOver) {
-    image = gameOverImg;
-  }
+  if (isGameOver) media = gameOverImg;
 
   if (!isGameOver) {
     if (happiness > 80) {
       status = 'Happy';
-      image = happyImg;
+      media = happyVideo;
+      secondaryMedia = happyImg;
     }
     if (happiness <= 80) {
       status = 'Feels Good, but Needs Attention';
-      image = normalImg;
+      media = normalVideo;
+      secondaryMedia = normalImg;
     }
     if (happiness < 40) {
       status = 'Got Sad... Help Him!';
-      image = sadImg;
+      media = sadVideo;
+      secondaryMedia = sadImg;
     }
 
     if (energy <= 50) {
       status = 'Wants to Sleep';
-      image = sleepyImg;
+      media = sleepyVideo;
+      secondaryMedia = sleepyImg;
     }
 
     if (fullness < 40) {
       status = 'Hungry';
-      image = hungryImg;
+      media = hungryImg;
+      secondaryMedia = hungryImg;
     }
   }
 
   return (
     <>
-      <img className="w-3/5 md:w-2xs" alt="Frenchie emotion" src={image} />
       {isGameOver ? (
-        <p className="font-[Anta] lg:text-2xl">
-          Oh, No! Game Over – Start Again{' '}
-        </p>
+        <>
+          <img className="w-3/5 md:w-2xs" alt="Game Over" src={media} />
+          <p className="font-[Anta] lg:text-2xl">
+            Oh, No! Game Over – Start Again
+          </p>
+        </>
       ) : (
-        <p className="font-[Anta] lg:text-2xl">Frenchie is {status}</p>
+        <>
+          <video
+            src={media}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-3/5 md:w-2xs"
+          >
+            <img src={secondaryMedia} alt="Frenchie emotion" />
+          </video>
+          <p className="font-[Anta] lg:text-2xl">Frenchie is {status}</p>
+        </>
       )}
     </>
   );

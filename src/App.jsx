@@ -74,7 +74,7 @@ function App() {
 
   return (
     <>
-      <h1 className="text-3xl mb-5 md:text-6xl md:mb-9">Frenchie Tamagotchi</h1>
+      <h1 className="text-3xl mb-5 md:text-6xl md:mb-5">Frenchie Tamagotchi</h1>
       <section
         className="lg:w-3xl mr-auto ml-auto flex justify-center flex-col items-center gap-5
       "
