@@ -9,13 +9,15 @@ import './App.css';
 const MAX_SCORE = 100;
 const INITIAL_SCORE = 80;
 const INTERVAL_STAT_REDUCING_SEC = 3;
-const BUTTON_INACTIVE_SEC = 8;
+const BUTTON_INACTIVE_SEC = 6;
+const ACTION_PLAY_SEC = 3;
 
 function App() {
   const [fullness, setFullness] = useState(INITIAL_SCORE);
   const [happiness, setHappiness] = useState(INITIAL_SCORE);
   const [energy, setEnergy] = useState(INITIAL_SCORE);
   const [isGameOver, setIsGameOver] = useState(false);
+  const [activatedAction, setActivatedAction] = useState(null);
 
   const [feedDisabled, setFeedDisabled] = useState(false);
   const [playDisabled, setPlayDisabled] = useState(false);
@@ -47,54 +49,69 @@ function App() {
 
   // decrease stats over time
   useEffect(() => {
-    if (isGameOver) return;
+    if (isGameOver || activatedAction) return;
     const interval = setInterval(() => {
-      setFullness(f => Math.max(f - 1, 0));
-      setHappiness(h => Math.max(h - 2, 0));
-      setEnergy(e => Math.max(e - 3, 0));
+      setFullness(f => Math.max(f - 2, 0));
+      setHappiness(h => Math.max(h - 3, 0));
+      setEnergy(e => Math.max(e - 4, 0));
     }, INTERVAL_STAT_REDUCING_SEC * 1000); //
 
     return () => clearInterval(interval);
-  }, [isGameOver]);
+  }, [isGameOver, activatedAction]);
 
   // handling action biuttons click
   function handleFeed() {
-    console.log('clicked to FEED');
     setFullness(f => Math.min(f + 15, MAX_SCORE));
     setEnergy(e => Math.min(e + 7, MAX_SCORE));
-    setFeedDisabled(true);
 
+    setFeedDisabled(true);
+    setActivatedAction('eating');
     setTimeout(() => {
-      setFeedDisabled(false);
-    }, BUTTON_INACTIVE_SEC * 1000);
+      setActivatedAction(null);
+      setTimeout(() => {
+        setFeedDisabled(false);
+      }, BUTTON_INACTIVE_SEC * 1000);
+    }, ACTION_PLAY_SEC * 1000);
   }
 
   function handlePlay() {
-    console.log('clicked to Play');
     setHappiness(h => Math.min(h + 15, MAX_SCORE));
     setEnergy(e => Math.min(e - 3, MAX_SCORE));
+
     setPlayDisabled(true);
+    setActivatedAction('playing');
     setTimeout(() => {
-      setPlayDisabled(false);
-    }, BUTTON_INACTIVE_SEC * 1000);
+      setActivatedAction(null);
+      setTimeout(() => {
+        setPlayDisabled(false);
+      }, BUTTON_INACTIVE_SEC * 1000);
+    }, ACTION_PLAY_SEC * 1000);
   }
 
   function handleRubs() {
-    console.log('clicked to Rub Ears');
     setHappiness(h => Math.min(h + 5, MAX_SCORE));
+
     setRubsDisabled(true);
+    setActivatedAction('enjoyingearrubs');
     setTimeout(() => {
-      setRubsDisabled(false);
-    }, BUTTON_INACTIVE_SEC * 1000);
+      setActivatedAction(null);
+      setTimeout(() => {
+        setRubsDisabled(false);
+      }, BUTTON_INACTIVE_SEC * 1000);
+    }, ACTION_PLAY_SEC * 1000);
   }
 
   function handleSleep() {
-    console.log('clicked to SLEEP');
     setEnergy(e => Math.min(e + 20, MAX_SCORE));
+
     setSleepDisabled(true);
+    setActivatedAction('sleeping');
     setTimeout(() => {
-      setSleepDisabled(false);
-    }, BUTTON_INACTIVE_SEC * 1000);
+      setActivatedAction(null);
+      setTimeout(() => {
+        setSleepDisabled(false);
+      }, BUTTON_INACTIVE_SEC * 1000);
+    }, ACTION_PLAY_SEC * 1000);
   }
 
   function handleReset() {
@@ -102,6 +119,11 @@ function App() {
     setHappiness(INITIAL_SCORE);
     setEnergy(INITIAL_SCORE);
     setIsGameOver(false);
+    setFeedDisabled(false);
+    setPlayDisabled(false);
+    setSleepDisabled(false);
+    setRubsDisabled(false);
+    setActivatedAction(null);
   }
 
   return (
@@ -117,6 +139,7 @@ function App() {
           happiness={happiness}
           energy={energy}
           isGameOver={isGameOver}
+          activatedAction={activatedAction}
         />
         <ActionButtons>
           <GameButton action={handlePlay} inactive={isGameOver || playDisabled}>

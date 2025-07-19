@@ -7,8 +7,8 @@ export const statusMessage = {
     hungry: 'Frenchie is Hungry',
     normal: 'Frenchie Feels Good, but Needs Attention',
     gameOver: 'Oh no! Game Over – Start Again',
-    playing: '...tap tap!',
+    playing: '...tap tap..',
     sleeping: '...zzZ...',
-    eating: '...nom nom~',
-    enjoyingearrubs: 'wuff...',
+    eating: '...nom nom...',
+    enjoyingearrubs: '...urrr...',
 };

@@ -6,6 +6,7 @@ export default function PetDisplay({
   happiness,
   energy,
   isGameOver,
+  activatedAction,
 }) {
   const { video, img } = mediaAssets;
   let activeState = 'normal';
@@ -13,11 +14,16 @@ export default function PetDisplay({
   if (isGameOver) activeState = 'gameOver';
 
   if (!isGameOver) {
-    if (happiness > 80) activeState = 'happy';
-    if (happiness <= 80) activeState = 'normal';
-    if (happiness <= 60 || energy <= 60 || fullness <= 50) activeState = 'sad';
-    if (energy <= 40) activeState = 'tired';
-    if (fullness <= 50) activeState = 'hungry';
+    if (activatedAction) {
+      activeState = activatedAction;
+    } else {
+      if (happiness > 80) activeState = 'happy';
+      if (happiness <= 80) activeState = 'normal';
+      if (happiness <= 60 || energy <= 60 || fullness <= 50)
+        activeState = 'sad';
+      if (energy <= 40) activeState = 'tired';
+      if (fullness <= 50) activeState = 'hungry';
+    }
   }
 
   return (
@@ -53,7 +59,7 @@ export default function PetDisplay({
           );
         })}
       </div>
-      <p className="font-[Anta] lg:text-2xl">{statusMessage[activeState]}</p>
+      <p className="font-[Anta] lg:text-2xl">{statusMessage?.[activeState]}</p>
     </>
   );
 }

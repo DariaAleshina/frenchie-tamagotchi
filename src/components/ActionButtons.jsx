@@ -3,7 +3,7 @@ export function ActionButtons({ children }) {
 }
 
 export function GameButton({ children, action, inactive }) {
-  const style = `relative bg-[#2D2F2C] text-[#FCF6E2] py-2 px-4  md:text-2xl ${
+  const style = `relative bg-[#2D2F2C] text-[#FCF6E2] text-sm/5 py-1 px-2 md:py-2 md:px-4  md:text-2xl ${
     !inactive && ' cursor-pointer hover:bg-[#D79F3B]'
   }`;
 
