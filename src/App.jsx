@@ -38,6 +38,7 @@ function App() {
     preloadVideo(video.hungry);
   }, []);
 
+  // checking if game is over
   useEffect(() => {
     if (fullness === 0 || happiness === 0 || energy === 0) {
       setIsGameOver(true);
@@ -56,6 +57,7 @@ function App() {
     return () => clearInterval(interval);
   }, [isGameOver]);
 
+  // handling action biuttons click
   function handleFeed() {
     console.log('clicked to FEED');
     setFullness(f => Math.min(f + 15, MAX_SCORE));
