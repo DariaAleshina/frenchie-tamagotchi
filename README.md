@@ -1,39 +1,41 @@
 # 🐶 Frenchie Tamagotchi
 
 A simple and cute virtual pet game built with React!  
-Take care of your French Bulldog by feeding, playing, and letting it sleep.  
-But be careful — if you neglect your pup, the game ends! 😢
+Take care of your French Bulldog by feeding, playing, letting it sleep & rubbing his ears.  
+But be careful — if you neglect the pup, the game ends!
 
 ---
 
 ## ✨ Screenshots / LiveDemo
 
+[LIVE DEMO](https://frenchie-tamagotchi-by-daria-aleshina.netlify.app/)
+
 ![screenshot of the game](public/screenshot-1.png)
-LiveDemo - tbc
 
 ---
 
 ## ✨ Tech Stack
 
-- ⚛️ **React** – UI framework
-- ⚡ **Vite** – Fast dev server and bundler
-- 🧠 **JavaScript** – Core language
-- 🎨 **Tailwind CSS** – Utility-first styling
+- ⚛️ **React**
+- ⚡ **Vite**
+- 🧠 **JavaScript**
+- 🎨 **Tailwind CSS**
+- 📻 **Netlify**
 
 ---
 
 ## ✨ Features
 
-- 🐾 Interactive pet with changing emotions
+- 🐾 Animated pet with changing state / emotions
 - ⏳ Pet stats decrease over time
-- 🍖 Buttons to feed, play, and let your dog sleep
+- 🍖 Buttons to feed, play, let sleep & rub his ears - stats increase.
 - 😴 Game over screen if any stat reaches 0
 
 ---
 
 ## ✨ Design
 
-- 🖼️ PNG Assets: pet visuals generated with ChatGPT
+- 🖼️ AI Generated Assets: Pet static visuals generated with ChatGPT & animated with Hailuoai
 - Ⓜ Google Fonts: Pixelify Sans, Anta
 - ✅ Responsive with Tailwind
 
@@ -46,14 +48,13 @@ LiveDemo - tbc
 - 🛑 Effect cleanup – Stop interval when the game ends
 - 🎛️ Conditional rendering – Change the pet image based on state
 - 🚫 Button disabling – Disable actions when the game is over
-- 💅 Tailwind CSS – For styling layout, buttons, and responsive design
 
 ---
 
 ## ✨ Getting Started
 
 ```bash
-git clone https://github.com/your-username/frenchie-tamagotchi.git
+git clone https://github.com/DariaAleshina/frenchie-tamagotchi
 cd frenchie-tamagotchi
 npm install
 npm run dev
