@@ -1,4 +1,4 @@
-export const stateList = ['gameOver', 'happy', 'normal', 'sad', 'tired', 'hungry'];
+export const stateList = ['gameOver', 'happy', 'normal', 'sad', 'tired', 'hungry', 'playing', 'sleeping', 'eating', 'enjoyingearrubs'];
 
 export const statusMessage = {
     happy: 'Frenchie is Very Happy!',
@@ -7,4 +7,8 @@ export const statusMessage = {
     hungry: 'Frenchie is Hungry',
     normal: 'Frenchie Feels Good, but Needs Attention',
     gameOver: 'Oh no! Game Over – Start Again',
+    playing: '...tap tap..',
+    sleeping: '...zzZ...',
+    eating: '...nom nom...',
+    enjoyingearrubs: '...urrr...',
 };

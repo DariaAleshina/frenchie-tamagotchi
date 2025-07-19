@@ -6,3 +6,14 @@
   padding: 2rem;
   text-align: center;
 }
+
+/* screen over appx 700px */
+@media (height > 44em) {
+  #root {
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
