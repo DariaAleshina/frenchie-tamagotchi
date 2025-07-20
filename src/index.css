@@ -10,8 +10,12 @@
 }
 
 aside {
-  margin: 2rem;
+  padding: 2rem;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 h2 {
@@ -22,10 +26,18 @@ h2 {
 aside ul {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
   font-family: 'Anta', sans-serif;
   font-weight: 400;
   font-size: 14px;
+  max-width: 420px;
+}
+
+aside ul li {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  text-align: start;
 }
 
 /* text-sm mt-4 max-w-md text-center mx-auto */

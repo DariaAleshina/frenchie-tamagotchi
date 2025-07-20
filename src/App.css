@@ -8,7 +8,7 @@
 }
 
 /* screen over appx 700px */
-@media (height > 44em) {
+@media (height > 44em), (width < 40em) {
   #root {
     height: 100dvh;
     display: flex;
