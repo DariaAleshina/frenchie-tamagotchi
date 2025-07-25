@@ -12,3 +12,37 @@ export const statusMessage = {
     eating: '...nom nom...',
     enjoyingearrubs: '...urrr...',
 };
+
+export const gameRules = {
+    title: 'How to Care for Frenchie',
+    rules: [
+        {
+            emoji: '⏳',
+            text: 'Stats slowly decrease over time – stay attentive!'
+        },
+        {
+            emoji: '🍖',
+            text: 'Feed to fill the belly & boost energy - available only when really hungry.'
+        },
+        {
+            emoji: '🎾',
+            text: 'Play to increase happiness(but it tires Frenchie).'
+        },
+        {
+            emoji: '🤲',
+            text: 'Rub his ears to gently boost happiness.'
+        },
+        {
+            emoji: '😴',
+            text: 'Let Frenchie Sleep to restore energy. Available when energy drops.'
+        },
+        {
+            emoji: '🕒',
+            text: 'Buttons need cooldown after each use – choose wisely.'
+        },
+        {
+            emoji: '🐶',
+            text: "Keep stats above 0 – otherwise, it's game over!"
+        },
+    ],
+};

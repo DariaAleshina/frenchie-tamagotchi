@@ -59,7 +59,7 @@ function App() {
     return () => clearInterval(interval);
   }, [isGameOver, activatedAction]);
 
-  // handling action biuttons click
+  // handling action buttons click
   function handleFeed() {
     setFullness(f => Math.min(f + 15, MAX_SCORE));
     setEnergy(e => Math.min(e + 7, MAX_SCORE));
