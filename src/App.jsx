@@ -1,10 +1,15 @@
 import { useState, useEffect } from 'react';
+
+import HeroSection from './components/HeroSection';
+import Heading from './components/Heading';
+import GameSection from './components/GameSection';
+import StatBar from './components/StatBar';
 import PetDisplay from './components/PetDisplay';
 import { ActionButtons, GameButton } from './components/ActionButtons';
-import StatBar from './components/StatBar';
+
 import { mediaAssets } from './mediaAssets';
 
-import './App.css';
+// import './App.css';
 
 const MAX_SCORE = 100;
 const INITIAL_SCORE = 80;
@@ -128,48 +133,53 @@ function App() {
 
   return (
     <>
-      <h1 className="text-3xl mb-5 md:text-6xl md:mb-5">Frenchie Tamagotchi</h1>
-      <section
-        className="lg:w-3xl mr-auto ml-auto flex justify-center flex-col items-center gap-5
-      "
-      >
-        <StatBar fullness={fullness} happiness={happiness} energy={energy} />
-        <PetDisplay
-          fullness={fullness}
-          happiness={happiness}
-          energy={energy}
-          isGameOver={isGameOver}
-          activatedAction={activatedAction}
-        />
-        <ActionButtons>
-          <GameButton action={handlePlay} inactive={isGameOver || playDisabled}>
-            Play 🎾
-          </GameButton>{' '}
-          <GameButton action={handleRubs} inactive={isGameOver || rubsDisabled}>
-            Ear Rubs 🤲
-          </GameButton>
-          <GameButton
-            action={handleSleep}
-            inactive={isGameOver || sleepDisabled || energy > 60}
+      <HeroSection>
+        <Heading />
+        <GameSection>
+          <StatBar fullness={fullness} happiness={happiness} energy={energy} />
+          <PetDisplay
+            fullness={fullness}
+            happiness={happiness}
+            energy={energy}
+            isGameOver={isGameOver}
+            activatedAction={activatedAction}
+          />
+          <ActionButtons>
+            <GameButton
+              action={handlePlay}
+              inactive={isGameOver || playDisabled}
+            >
+              Play 🎾
+            </GameButton>{' '}
+            <GameButton
+              action={handleRubs}
+              inactive={isGameOver || rubsDisabled}
+            >
+              Ear Rubs 🤲
+            </GameButton>
+            <GameButton
+              action={handleSleep}
+              inactive={isGameOver || sleepDisabled || energy > 60}
+            >
+              Sleep 😴
+            </GameButton>
+            <GameButton
+              action={handleFeed}
+              inactive={isGameOver || feedDisabled || fullness > 50}
+            >
+              Feed 🍖
+            </GameButton>
+          </ActionButtons>
+          <button
+            onClick={handleReset}
+            className={`cursor-pointer py-2 px-4  ${
+              isGameOver && 'bg-[#D79F3B]'
+            }`}
           >
-            Sleep 😴
-          </GameButton>
-          <GameButton
-            action={handleFeed}
-            inactive={isGameOver || feedDisabled || fullness > 50}
-          >
-            Feed 🍖
-          </GameButton>
-        </ActionButtons>
-        <button
-          onClick={handleReset}
-          className={`cursor-pointer py-2 px-4  ${
-            isGameOver && 'bg-[#D79F3B]'
-          }`}
-        >
-          Reset the Game
-        </button>
-      </section>
+            Reset the Game
+          </button>
+        </GameSection>
+      </HeroSection>
     </>
   );
 }

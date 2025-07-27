@@ -1,3 +1,5 @@
+export const gameTitle = 'Frenchie Tamagotchi';
+
 export const stateList = ['gameOver', 'happy', 'normal', 'sad', 'tired', 'hungry', 'playing', 'sleeping', 'eating', 'enjoyingearrubs'];
 
 export const statusMessage = {
