@@ -28,7 +28,7 @@ export default function PetDisplay({
 
   return (
     <>
-      <div className="relative flex flex-col justify-center items-center w-3/5 md:w-2xs aspect-square bg-[#DFAF53]">
+      <div className="relative flex flex-col justify-center items-center w-3/5 md:w-2xs aspect-square bg-yellow-3">
         {stateList.map(state => {
           const style = `w-full ${state === activeState ? 'block' : 'hidden'}`;
           return state === 'gameOver' ? (
@@ -59,7 +59,7 @@ export default function PetDisplay({
           );
         })}
       </div>
-      <p className="font-[Anta] lg:text-2xl">{statusMessage?.[activeState]}</p>
+      <p className="font-anta lg:text-2xl">{statusMessage?.[activeState]}</p>
     </>
   );
 }

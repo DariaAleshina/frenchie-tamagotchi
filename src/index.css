@@ -1,56 +1,31 @@
 @import 'tailwindcss';
 
-:root {
-  font-family: 'Pixelify Sans', sans-serif;
+@theme {
+  --font-pixel: 'Pixelify Sans', sans-serif;
+  --font-anta: 'Anta', sans-serif;
+
+  --color-light: #fcf6e2;
+  --color-dark: #2d2f2c;
+  --color-grey-inactive: #797979;
+  --color-yellow-1: #c18a26; /* text */
+  --color-yellow-2: #d79f3b; /* buttons */
+  --color-yellow-3: #dfaf53; /* background */
+  --color-yellow-shadow: rgba(223, 175, 83, 0.7); /* shadow */
+  --color-red-1: #f25a51; /* text */
+}
+
+body {
+  background-color: var(--color-light);
+  font-family: var(--font-pixel);
   font-optical-sizing: auto;
   font-weight: 600;
   font-style: normal;
-
-  background-color: #fcf6e2;
 }
 
-aside {
-  padding: 2rem;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-h2 {
-  font-size: 1.5rem;
-  margin-bottom: 20px;
-}
-
-aside ul {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  font-family: 'Anta', sans-serif;
-  font-weight: 400;
-  font-size: 14px;
-  max-width: 420px;
-}
-
-aside ul li {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  text-align: start;
-}
-
-/* text-sm mt-4 max-w-md text-center mx-auto */
-
-footer {
-  text-align: center;
-  font-family: 'Anta', sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 14px;
-  padding: 1rem;
-}
-
-footer a:hover {
-  color: #c18a26;
+@layer utilities {
+  @media (min-height: 44em), (max-width: 40em) {
+    .hero-h-dvh {
+      height: 100dvh;
+    }
+  }
 }
