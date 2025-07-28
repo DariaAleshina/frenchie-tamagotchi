@@ -24,11 +24,11 @@ export const gameRules = {
         },
         {
             emoji: '🍖',
-            text: 'Feed to fill the belly & boost energy - available only when really hungry.'
+            text: 'Feed to fill the belly & boost energy – available only when really hungry.'
         },
         {
             emoji: '🎾',
-            text: 'Play to increase happiness(but it tires Frenchie).'
+            text: 'Play to increase happiness – but it tires Frenchie.'
         },
         {
             emoji: '🤲',

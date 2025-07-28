@@ -6,6 +6,9 @@ import GameSection from './components/GameSection';
 import StatBar from './components/StatBar';
 import PetDisplay from './components/PetDisplay';
 import { ActionButtons, GameButton } from './components/ActionButtons';
+import RulesSection from './components/RulesSection';
+import Footer from './components/Footer';
+import SeparationLine from './components/SeparationLine';
 
 import { mediaAssets } from './mediaAssets';
 
@@ -171,13 +174,17 @@ function App() {
           <button
             onClick={handleReset}
             className={`cursor-pointer py-2 px-4  ${
-              isGameOver && 'bg-[#D79F3B]'
+              isGameOver && 'bg-yellow-2'
             }`}
           >
             Reset the Game
           </button>
         </GameSection>
       </HeroSection>
+      <SeparationLine />
+      <RulesSection />
+      <SeparationLine />
+      <Footer />
     </>
   );
 }
