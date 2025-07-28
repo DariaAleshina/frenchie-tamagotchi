@@ -20,11 +20,13 @@ import { mediaAssets } from './mediaAssets';
 
 const MAX_SCORE = 100;
 const INITIAL_SCORE = 80;
-const INTERVAL_STAT_REDUCING_SEC = 3;
-const BUTTON_INACTIVE_SEC = 6;
 const ACTION_PLAY_SEC = 3;
 
+const INTERVAL_STAT_REDUCING_SEC = 3;
+const BUTTON_INACTIVE_SEC = 6;
+
 function App() {
+  const [isModeFast, setIsModeFast] = useState(true);
   const [fullness, setFullness] = useState(INITIAL_SCORE);
   const [happiness, setHappiness] = useState(INITIAL_SCORE);
   const [energy, setEnergy] = useState(INITIAL_SCORE);
@@ -35,6 +37,8 @@ function App() {
   const [playDisabled, setPlayDisabled] = useState(false);
   const [sleepDisabled, setSleepDisabled] = useState(false);
   const [rubsDisabled, setRubsDisabled] = useState(false);
+
+  const speedMultiplier = isModeFast ? 1 : 10;
 
   // preload videos
   useEffect(() => {
@@ -66,10 +70,10 @@ function App() {
       setFullness(f => Math.max(f - 2, 0));
       setHappiness(h => Math.max(h - 3, 0));
       setEnergy(e => Math.max(e - 4, 0));
-    }, INTERVAL_STAT_REDUCING_SEC * 1000); //
+    }, INTERVAL_STAT_REDUCING_SEC * speedMultiplier * 1000); //
 
     return () => clearInterval(interval);
-  }, [isGameOver, activatedAction]);
+  }, [isGameOver, activatedAction, speedMultiplier]);
 
   // handling action buttons click
   function handleFeed() {
@@ -82,7 +86,7 @@ function App() {
       setActivatedAction(null);
       setTimeout(() => {
         setFeedDisabled(false);
-      }, BUTTON_INACTIVE_SEC * 1000);
+      }, BUTTON_INACTIVE_SEC * speedMultiplier * 1000);
     }, ACTION_PLAY_SEC * 1000);
   }
 
@@ -96,7 +100,7 @@ function App() {
       setActivatedAction(null);
       setTimeout(() => {
         setPlayDisabled(false);
-      }, BUTTON_INACTIVE_SEC * 1000);
+      }, BUTTON_INACTIVE_SEC * speedMultiplier * 1000);
     }, ACTION_PLAY_SEC * 1000);
   }
 
@@ -109,7 +113,7 @@ function App() {
       setActivatedAction(null);
       setTimeout(() => {
         setRubsDisabled(false);
-      }, BUTTON_INACTIVE_SEC * 1000);
+      }, BUTTON_INACTIVE_SEC * speedMultiplier * 1000);
     }, ACTION_PLAY_SEC * 1000);
   }
 
@@ -122,7 +126,7 @@ function App() {
       setActivatedAction(null);
       setTimeout(() => {
         setSleepDisabled(false);
-      }, BUTTON_INACTIVE_SEC * 1000);
+      }, BUTTON_INACTIVE_SEC * speedMultiplier * 1000);
     }, ACTION_PLAY_SEC * 1000);
   }
 
@@ -142,7 +146,7 @@ function App() {
     <>
       <HeroSection>
         <Header>
-          <ModeToggle />
+          <ModeToggle isModeFast={isModeFast} onModeChange={setIsModeFast} />
         </Header>
         <GameSection>
           <StatBar fullness={fullness} happiness={happiness} energy={energy} />

@@ -7,10 +7,11 @@
   --color-light: #fcf6e2;
   --color-dark: #2d2f2c;
   --color-grey-inactive: #797979;
-  --color-yellow-1: #c18a26; /* text */
+  --color-yellow-1: #b78224; /* text */
   --color-yellow-2: #d79f3b; /* buttons */
   --color-yellow-3: #dfaf53; /* background */
-  --color-yellow-shadow: rgba(223, 175, 83, 0.7); /* shadow */
+  --color-yellow-dark: #89621d;
+  --color-yellow-shadow: rgba(223, 175, 83, 0.8); /* shadow */
   --color-red-1: #f25a51; /* text */
 }
 
