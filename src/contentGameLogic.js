@@ -24,7 +24,7 @@ export const gameRules = {
         },
         {
             emoji: '🍖',
-            text: 'Feed to fill the belly & boost energy – available only when really hungry.'
+            text: 'Feed to fill the belly & boost energy. Available when moderately hungry.'
         },
         {
             emoji: '🎾',
@@ -36,7 +36,7 @@ export const gameRules = {
         },
         {
             emoji: '😴',
-            text: 'Let Frenchie Sleep to restore energy. Available when energy drops.'
+            text: 'Let Frenchie sleep to restore energy. Available when energy drops.'
         },
         {
             emoji: '🕒',

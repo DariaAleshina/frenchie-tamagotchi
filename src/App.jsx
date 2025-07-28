@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import Header from './components/Header';
+import ModeToggle from './components/ModeToggle';
 import HeroSection from './components/HeroSection';
 import Heading from './components/Heading';
 import GameSection from './components/GameSection';
@@ -140,8 +141,9 @@ function App() {
   return (
     <>
       <HeroSection>
-        <Header></Header>
-        {/* <Heading /> */}
+        <Header>
+          <ModeToggle />
+        </Header>
         <GameSection>
           <StatBar fullness={fullness} happiness={happiness} energy={energy} />
           <PetDisplay
