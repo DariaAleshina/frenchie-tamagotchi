@@ -18,7 +18,7 @@ export function GameButton({ children, action, inactive }) {
 }
 
 export function ResetButton({ isGameOver, onReset }) {
-  const style = `cursor-pointer py-2 px-4 hover:text-yellow-1 focus:outline-none focus:ring-5 focus:ring-yellow-shadow  ${
+  const style = `cursor-pointer py-2 px-4 hover:text-yellow-dark focus:outline-none focus:ring-5 focus:ring-yellow-shadow  ${
     isGameOver && 'bg-yellow-2'
   }`;
   return (

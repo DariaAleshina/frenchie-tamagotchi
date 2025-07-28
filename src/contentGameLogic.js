@@ -46,5 +46,9 @@ export const gameRules = {
             emoji: '🐶',
             text: "Keep stats above 0 – otherwise, it's game over!"
         },
+        {
+            emoji: '⏩',
+            text: "Set how fast the game runs by toggling the mode switch."
+        },
     ],
 };

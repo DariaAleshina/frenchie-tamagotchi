@@ -21,7 +21,7 @@ function NavLink({ children, linkToSection }) {
     <a
       className="
       px-0.5
-      hover:text-yellow-1
+      hover:text-yellow-dark
       active:text-yellow-1
       focus:outline-none focus:ring-3 focus:ring-yellow-shadow"
       href={`#${linkToSection}`}
