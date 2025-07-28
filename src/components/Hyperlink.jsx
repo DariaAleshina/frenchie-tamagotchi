@@ -2,7 +2,7 @@ function Hyperlink({ children }) {
   return (
     <a
       className="
-      font-pixel text-yellow-1 px-0.5
+      font-pixel text-yellow-dark px-0.5
       hover:text-grey-inactive
       active:text-grey-inactive
       focus:outline-none focus:ring-3 focus:ring-yellow-shadow"
