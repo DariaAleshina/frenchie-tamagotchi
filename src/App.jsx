@@ -9,8 +9,6 @@ import { ActionButtons, GameButton } from './components/ActionButtons';
 
 import { mediaAssets } from './mediaAssets';
 
-// import './App.css';
-
 const MAX_SCORE = 100;
 const INITIAL_SCORE = 80;
 const INTERVAL_STAT_REDUCING_SEC = 3;
