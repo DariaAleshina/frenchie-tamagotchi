@@ -71,7 +71,7 @@ function App() {
     }, intervalReduceStatSecs * 1000); //
 
     return () => clearInterval(interval);
-  }, [isGameOver, activatedAction]);
+  }, [isGameOver, activatedAction, intervalReduceStatSecs]);
 
   // handling action buttons click
   function handleFeed() {
