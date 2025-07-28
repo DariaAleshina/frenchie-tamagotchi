@@ -1,5 +1,3 @@
-import '../App.css';
-
 export default function StatBar({ fullness, happiness, energy }) {
   return (
     <div className="font-anta flex flex-row  gap-6 md:gap-14 md:text-2xl lg:gap-24 lg:text-3xl">

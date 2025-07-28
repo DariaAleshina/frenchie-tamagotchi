@@ -163,7 +163,7 @@ function App() {
             </GameButton>
             <GameButton
               action={handleFeed}
-              inactive={isGameOver || feedDisabled || fullness > 50}
+              inactive={isGameOver || feedDisabled || fullness > 60}
             >
               Feed 🍖
             </GameButton>
