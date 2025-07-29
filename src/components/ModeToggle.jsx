@@ -3,9 +3,10 @@ function ModeToggle({ isModeFast, onModeChange }) {
     <div className="text-sm flex border-2 justify-between items-center p-0.5">
       <div className="relative z-0 flex justify-between items-center gap-1">
         <span
-          className={`absolute bg-yellow-3 w-1/2 h-full z-1 transition-all duration-700 ${
-            isModeFast ? 'right-0' : 'left-0'
-          }`}
+          className={`absolute bg-yellow-3 w-1/2 h-full z-1 transition-all duration-500 ${
+            isModeFast ? 'translate-x-full' : 'translate-x-0'
+          }
+          `}
           aria-hidden="true"
         />
         <button
