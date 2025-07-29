@@ -7,7 +7,7 @@ function Header({ children }) {
         <nav className="flex justify-center items-center">
           <NavLink linkToSection="game-rules">Game Rules</NavLink>
         </nav>
-        {children}
+        <div className="flex items-center justify-center gap-5">{children}</div>
       </div>
       <Heading />
     </header>

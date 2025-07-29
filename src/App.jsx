@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 
 import Header from './components/Header';
 import ModeToggle from './components/ModeToggle';
+import MiniGameButton from './MiniGameButton';
 import HeroSection from './components/HeroSection';
 import Heading from './components/Heading';
 import GameSection from './components/GameSection';
@@ -145,6 +146,7 @@ function App() {
       <HeroSection>
         <Header>
           <ModeToggle isModeFast={isModeFast} onModeChange={setIsModeFast} />
+          <MiniGameButton />
         </Header>
         <GameSection>
           <StatBar fullness={fullness} happiness={happiness} energy={energy} />
