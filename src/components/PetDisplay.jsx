@@ -1,5 +1,6 @@
 import { mediaAssets } from '../mediaAssets';
 import { stateList, statusMessage } from '../contentGameLogic';
+import Spinner from './Spinner';
 
 export default function PetDisplay({
   fullness,
@@ -29,8 +30,11 @@ export default function PetDisplay({
   return (
     <>
       <div className="relative flex flex-col justify-center items-center w-3/5 md:w-2xs aspect-square bg-yellow-3">
+        <Spinner />
         {stateList.map(state => {
-          const style = `w-full ${state === activeState ? 'block' : 'hidden'}`;
+          const style = `absolute w-full ${
+            state === activeState ? 'block' : 'hidden'
+          }`;
           return state === 'gameOver' ? (
             <img
               className={style}
