@@ -1,4 +1,4 @@
-function Hyperlink({ children }) {
+function Hyperlink({ children, href }) {
   return (
     <a
       className="
@@ -6,7 +6,7 @@ function Hyperlink({ children }) {
       hover:text-grey-inactive
       active:text-grey-inactive
       focus:outline-none focus:ring-3 focus:ring-yellow-shadow"
-      href="https://github.com/DariaAleshina/frenchie-tamagotchi"
+      href={href}
       target="_blank"
     >
       {children}
