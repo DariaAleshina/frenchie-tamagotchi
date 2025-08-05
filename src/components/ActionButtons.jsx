@@ -1,3 +1,5 @@
+import { useGame } from '../contexts/GameContext';
+
 export function ActionButtons({ children }) {
   return <div className="flex gap-5">{children}</div>;
 }
@@ -17,12 +19,15 @@ export function GameButton({ children, action, inactive }) {
   );
 }
 
-export function ResetButton({ isGameOver, onReset }) {
+export function ResetButton() {
+  const { isGameOver, handleReset } = useGame();
+
   const style = `cursor-pointer py-2 px-4 hover:text-yellow-dark focus:outline-none focus:ring-5 focus:ring-yellow-shadow  ${
     isGameOver && 'bg-yellow-2'
   }`;
+
   return (
-    <button onClick={onReset} className={style}>
+    <button onClick={handleReset} className={style}>
       Reset the Game
     </button>
   );
