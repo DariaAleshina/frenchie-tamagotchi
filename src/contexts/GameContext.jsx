@@ -25,12 +25,11 @@ function GameProvider({ children }) {
   const isGameOver = fullness === 0 || happiness === 0 || energy === 0;
 
   //   deriving Pet Display State
-  let petDisplayState = 'normal';
+  let petDisplayState;
   if (isGameOver) petDisplayState = 'gameOver';
   if (!isGameOver) {
-    if (activatedAction) {
-      petDisplayState = activatedAction;
-    } else {
+    if (activatedAction) petDisplayState = activatedAction;
+    if (!activatedAction) {
       if (happiness > 80) petDisplayState = 'happy';
       if (happiness <= 80) petDisplayState = 'normal';
       if (happiness <= 60 || energy <= 60 || fullness <= 50)
@@ -78,6 +77,7 @@ function GameProvider({ children }) {
 
     setPlayDisabled(true);
     setActivatedAction('playing');
+
     setTimeout(() => {
       setActivatedAction(null);
       setTimeout(() => {
