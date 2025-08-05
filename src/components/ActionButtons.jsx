@@ -1,34 +1,43 @@
 import { useGame } from '../contexts/GameContext';
+import GameButton from './GameButton';
 
-export function ActionButtons({ children }) {
-  return <div className="flex gap-5">{children}</div>;
-}
-
-export function GameButton({ children, action, inactive }) {
-  const style = `relative bg-dark text-light text-sm/5 py-1 px-2 md:py-2 md:px-4  md:text-2xl  focus:outline-none focus:ring-5 focus:ring-yellow-shadow ${
-    !inactive && ' cursor-pointer hover:bg-yellow-2'
-  }`;
+function ActionButtons() {
+  const {
+    isGameOver,
+    handleFeed,
+    handlePlay,
+    handleRubs,
+    handleSleep,
+    playDisabled,
+    rubsDisabled,
+    sleepDisabled,
+    feedDisabled,
+    energy,
+    fullness,
+  } = useGame();
 
   return (
-    <button disabled={inactive} className={style} onClick={action}>
-      {children}
-      {inactive && (
-        <span className="absolute inset-0 bg-grey-inactive opacity-60 pointer-events-none"></span>
-      )}
-    </button>
+    <div className="flex gap-5">
+      <GameButton action={handlePlay} inactive={isGameOver || playDisabled}>
+        Play 🎾
+      </GameButton>{' '}
+      <GameButton action={handleRubs} inactive={isGameOver || rubsDisabled}>
+        Ear Rubs 🤲
+      </GameButton>
+      <GameButton
+        action={handleSleep}
+        inactive={isGameOver || sleepDisabled || energy > 60}
+      >
+        Sleep 😴
+      </GameButton>
+      <GameButton
+        action={handleFeed}
+        inactive={isGameOver || feedDisabled || fullness > 60}
+      >
+        Feed 🍖
+      </GameButton>
+    </div>
   );
 }
 
-export function ResetButton() {
-  const { isGameOver, handleReset } = useGame();
-
-  const style = `cursor-pointer py-2 px-4 hover:text-yellow-dark focus:outline-none focus:ring-5 focus:ring-yellow-shadow  ${
-    isGameOver && 'bg-yellow-2'
-  }`;
-
-  return (
-    <button onClick={handleReset} className={style}>
-      Reset the Game
-    </button>
-  );
-}
+export default ActionButtons;

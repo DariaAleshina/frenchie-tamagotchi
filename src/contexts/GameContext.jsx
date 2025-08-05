@@ -9,7 +9,6 @@ function GameProvider({ children }) {
   const [fullness, setFullness] = useState(INITIAL_SCORE);
   const [happiness, setHappiness] = useState(INITIAL_SCORE);
   const [energy, setEnergy] = useState(INITIAL_SCORE);
-  const [isGameOver, setIsGameOver] = useState(false);
   const [activatedAction, setActivatedAction] = useState(null);
 
   const [feedDisabled, setFeedDisabled] = useState(false);
@@ -21,6 +20,25 @@ function GameProvider({ children }) {
   const intervalReduceStatSecs = isModeFast ? 3 : 60;
   const buttonInactiveSecs = isModeFast ? 6 : 60;
   const actionPlaySecs = isModeFast ? 3 : 6;
+
+  // checking if game is over
+  const isGameOver = fullness === 0 || happiness === 0 || energy === 0;
+
+  //   deriving Pet Display State
+  let petDisplayState = 'normal';
+  if (isGameOver) petDisplayState = 'gameOver';
+  if (!isGameOver) {
+    if (activatedAction) {
+      petDisplayState = activatedAction;
+    } else {
+      if (happiness > 80) petDisplayState = 'happy';
+      if (happiness <= 80) petDisplayState = 'normal';
+      if (happiness <= 60 || energy <= 60 || fullness <= 50)
+        petDisplayState = 'sad';
+      if (energy <= 40) petDisplayState = 'tired';
+      if (fullness <= 50) petDisplayState = 'hungry';
+    }
+  }
 
   // preload videos
   // useEffect(() => {
@@ -38,13 +56,6 @@ function GameProvider({ children }) {
   //   preloadVideo(video.hungry);
   // }, []);
 
-  // checking if game is over
-  useEffect(() => {
-    if (fullness === 0 || happiness === 0 || energy === 0) {
-      setIsGameOver(true);
-    }
-  }, [fullness, happiness, energy]);
-
   // decrease stats over time
   useEffect(() => {
     if (isGameOver || activatedAction) return;
@@ -56,6 +67,11 @@ function GameProvider({ children }) {
 
     return () => clearInterval(interval);
   }, [isGameOver, activatedAction, intervalReduceStatSecs]);
+
+  // handling speed mode change
+  function handleSetModeFast(state) {
+    setIsModeFast(state);
+  }
 
   // handling action buttons click
   function handleFeed() {
@@ -116,7 +132,6 @@ function GameProvider({ children }) {
     setFullness(INITIAL_SCORE);
     setHappiness(INITIAL_SCORE);
     setEnergy(INITIAL_SCORE);
-    setIsGameOver(false);
     setFeedDisabled(false);
     setPlayDisabled(false);
     setSleepDisabled(false);
@@ -125,12 +140,13 @@ function GameProvider({ children }) {
   }
   return (
     <GameContext.Provider
-      value={
-        (fullness,
+      value={{
+        isGameOver,
+        fullness,
         happiness,
         energy,
-        isGameOver,
         activatedAction,
+        petDisplayState,
         feedDisabled,
         playDisabled,
         rubsDisabled,
@@ -140,9 +156,9 @@ function GameProvider({ children }) {
         handleRubs,
         handleSleep,
         isModeFast,
-        setIsModeFast,
-        handleReset)
-      }
+        handleSetModeFast,
+        handleReset,
+      }}
     >
       {children}
     </GameContext.Provider>
