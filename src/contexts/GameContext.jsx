@@ -1,22 +1,107 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useEffect, useReducer } from 'react';
 
 const GameContext = createContext();
 
 const MAX_SCORE = 100;
 const INITIAL_SCORE = 80;
 
+const initialState = {
+  isModeFast: true,
+  fullness: INITIAL_SCORE,
+  happiness: INITIAL_SCORE,
+  energy: INITIAL_SCORE,
+  activatedAction: null,
+  feedDisabled: false,
+  playDisabled: false,
+  sleepDisabled: false,
+  rubsDisabled: false,
+};
+
+function reducer(state, action) {
+  switch (action.type) {
+    case 'setModeFast':
+      return { ...state, isModeFast: action.payload };
+    case 'decreaseStats':
+      return {
+        ...state,
+        fullness: Math.max(state.fullness - 2, 0),
+        happiness: Math.max(state.happiness - 3, 0),
+        energy: Math.max(state.energy - 4, 0),
+      };
+    case 'play':
+      return {
+        ...state,
+        activatedAction: 'playing',
+        happiness: Math.min(state.happiness + 15, MAX_SCORE),
+        energy: Math.min(state.energy - 3, MAX_SCORE),
+        playDisabled: true,
+      };
+    case 'rubs':
+      return {
+        ...state,
+        activatedAction: 'enjoyingearrubs',
+        happiness: Math.min(state.happiness + 5, MAX_SCORE),
+        rubsDisabled: true,
+      };
+    case 'sleep':
+      return {
+        ...state,
+        activatedAction: 'sleeping',
+        energy: Math.min(state.energy + 20, MAX_SCORE),
+        sleepDisabled: true,
+      };
+    case 'feed':
+      return {
+        ...state,
+        activatedAction: 'eating',
+        fullness: Math.min(state.fullness + 15, MAX_SCORE),
+        energy: Math.min(state.energy + 7, MAX_SCORE),
+        feedDisabled: true,
+      };
+    case 'activatePlayBtn':
+      return { ...state, playDisabled: false };
+    case 'activateRubsBtn':
+      return { ...state, rubsDisabled: false };
+    case 'activateSleepBtn':
+      return { ...state, sleepDisabled: false };
+    case 'activateFeedBtn':
+      return { ...state, feedDisabled: false };
+    case 'stopAction':
+      return { ...state, activatedAction: null };
+    case 'reset':
+      return {
+        ...state,
+        fullness: INITIAL_SCORE,
+        energy: INITIAL_SCORE,
+        happiness: INITIAL_SCORE,
+        activatedAction: null,
+        feedDisabled: false,
+        playDisabled: false,
+        rubsDisabled: false,
+        sleepDisabled: false,
+      };
+    default:
+      throw new Error('Unknown action type');
+  }
+}
+
 function GameProvider({ children }) {
-  const [fullness, setFullness] = useState(INITIAL_SCORE);
-  const [happiness, setHappiness] = useState(INITIAL_SCORE);
-  const [energy, setEnergy] = useState(INITIAL_SCORE);
-  const [activatedAction, setActivatedAction] = useState(null);
+  const [
+    {
+      isModeFast,
+      fullness,
+      happiness,
+      energy,
+      activatedAction,
+      playDisabled,
+      rubsDisabled,
+      sleepDisabled,
+      feedDisabled,
+    },
+    dispatch,
+  ] = useReducer(reducer, initialState);
 
-  const [feedDisabled, setFeedDisabled] = useState(false);
-  const [playDisabled, setPlayDisabled] = useState(false);
-  const [sleepDisabled, setSleepDisabled] = useState(false);
-  const [rubsDisabled, setRubsDisabled] = useState(false);
-
-  const [isModeFast, setIsModeFast] = useState(true);
+  // setting speed based on mode
   const intervalReduceStatSecs = isModeFast ? 3 : 60;
   const buttonInactiveSecs = isModeFast ? 6 : 60;
   const actionPlaySecs = isModeFast ? 3 : 6;
@@ -24,7 +109,7 @@ function GameProvider({ children }) {
   // checking if game is over
   const isGameOver = fullness === 0 || happiness === 0 || energy === 0;
 
-  //   deriving Pet Display State
+  // deriving Pet Display State
   let petDisplayState;
   if (isGameOver) petDisplayState = 'gameOver';
   if (!isGameOver) {
@@ -43,88 +128,61 @@ function GameProvider({ children }) {
   useEffect(() => {
     if (isGameOver || activatedAction) return;
     const interval = setInterval(() => {
-      setFullness(f => Math.max(f - 2, 0));
-      setHappiness(h => Math.max(h - 3, 0));
-      setEnergy(e => Math.max(e - 4, 0));
+      dispatch({ type: 'decreaseStats' });
     }, intervalReduceStatSecs * 1000); //
 
     return () => clearInterval(interval);
   }, [isGameOver, activatedAction, intervalReduceStatSecs]);
 
-  // handling speed mode change
-  function handleSetModeFast(state) {
-    setIsModeFast(state);
-  }
-
   // handling action buttons click
   function handleFeed() {
-    setFullness(f => Math.min(f + 15, MAX_SCORE));
-    setEnergy(e => Math.min(e + 7, MAX_SCORE));
+    dispatch({ type: 'feed' });
 
-    setFeedDisabled(true);
-    setActivatedAction('eating');
     setTimeout(() => {
-      setActivatedAction(null);
+      dispatch({ type: 'stopAction' });
       setTimeout(() => {
-        setFeedDisabled(false);
+        dispatch({ type: 'activateFeedBtn' });
       }, buttonInactiveSecs * 1000);
     }, actionPlaySecs * 1000);
   }
 
   function handlePlay() {
-    setHappiness(h => Math.min(h + 15, MAX_SCORE));
-    setEnergy(e => Math.min(e - 3, MAX_SCORE));
-
-    setPlayDisabled(true);
-    setActivatedAction('playing');
+    dispatch({ type: 'play' });
 
     setTimeout(() => {
-      setActivatedAction(null);
+      dispatch({ type: 'stopAction' });
       setTimeout(() => {
-        setPlayDisabled(false);
+        dispatch({ type: 'activatePlayBtn' });
       }, buttonInactiveSecs * 1000);
     }, actionPlaySecs * 1000);
   }
 
   function handleRubs() {
-    setHappiness(h => Math.min(h + 5, MAX_SCORE));
+    dispatch({ type: 'rubs' });
 
-    setRubsDisabled(true);
-    setActivatedAction('enjoyingearrubs');
     setTimeout(() => {
-      setActivatedAction(null);
+      dispatch({ type: 'stopAction' });
       setTimeout(() => {
-        setRubsDisabled(false);
+        dispatch({ type: 'activateRubsBtn' });
       }, buttonInactiveSecs * 1000);
     }, actionPlaySecs * 1000);
   }
 
   function handleSleep() {
-    setEnergy(e => Math.min(e + 20, MAX_SCORE));
+    dispatch({ type: 'sleep' });
 
-    setSleepDisabled(true);
-    setActivatedAction('sleeping');
     setTimeout(() => {
-      setActivatedAction(null);
+      dispatch({ type: 'stopAction' });
       setTimeout(() => {
-        setSleepDisabled(false);
+        dispatch({ type: 'activateSleepBtn' });
       }, buttonInactiveSecs * 1000);
     }, actionPlaySecs * 1000);
   }
 
-  function handleReset() {
-    setFullness(INITIAL_SCORE);
-    setHappiness(INITIAL_SCORE);
-    setEnergy(INITIAL_SCORE);
-    setFeedDisabled(false);
-    setPlayDisabled(false);
-    setSleepDisabled(false);
-    setRubsDisabled(false);
-    setActivatedAction(null);
-  }
   return (
     <GameContext.Provider
       value={{
+        isModeFast,
         isGameOver,
         fullness,
         happiness,
@@ -139,9 +197,7 @@ function GameProvider({ children }) {
         handlePlay,
         handleRubs,
         handleSleep,
-        isModeFast,
-        handleSetModeFast,
-        handleReset,
+        dispatch,
       }}
     >
       {children}

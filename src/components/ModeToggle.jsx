@@ -1,7 +1,7 @@
 import { useGame } from '../contexts/GameContext';
 
 function ModeToggle() {
-  const { isModeFast, handleSetModeFast } = useGame();
+  const { isModeFast, dispatch } = useGame();
 
   return (
     <div className="text-sm flex border-2 justify-between items-center p-0.5">
@@ -15,7 +15,7 @@ function ModeToggle() {
         />
         <button
           className="relative px-1 py-0.5 z-10 cursor-pointer focus:outline-none focus:text-yellow-dark hover:text-yellow-dark"
-          onClick={() => handleSetModeFast(false)}
+          onClick={() => dispatch({ type: 'setModeFast', payload: false })}
           aria-pressed={!isModeFast}
           aria-label="Switch to slow mode"
         >
@@ -23,7 +23,7 @@ function ModeToggle() {
         </button>
         <button
           className="relative px-1 py-0.5 z-10 cursor-pointer focus:outline-none focus:text-yellow-dark hover:text-yellow-dark"
-          onClick={() => handleSetModeFast(true)}
+          onClick={() => dispatch({ type: 'setModeFast', payload: true })}
           aria-label="Switch to fast mode"
           aria-pressed={isModeFast}
         >
