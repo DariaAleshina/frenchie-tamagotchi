@@ -30,6 +30,7 @@ But be careful — if you neglect the pup, the game ends!
 - ⏳ Pet stats decrease over time
 - 🍖 Buttons to feed, play, let sleep & rub his ears - stats increase.
 - 😴 Game over screen if any stat reaches 0
+- ⏩ Speed Mode Toggler - set how fast the game runs (fast by default).
 
 ---
 
@@ -41,9 +42,9 @@ But be careful — if you neglect the pup, the game ends!
 
 ---
 
-## ✨ This project helped reinforce important React fundamentals:
+## ✨ This project helped reinforce important React fundamentals & advanced state management:
 
-- 🔄 useState – Manage pet stats like hunger, happiness, and energy
+- 🔄 Context API + useReducer – Manage pet stats and other game logic
 - ⏱️ useEffect + setInterval – Auto-decrease stats over time
 - 🛑 Effect cleanup – Stop interval when the game ends
 - 🎛️ Conditional rendering – Change the pet image based on state
