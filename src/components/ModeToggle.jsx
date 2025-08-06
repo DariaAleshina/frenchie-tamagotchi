@@ -16,8 +16,8 @@ function ModeToggle() {
         <button
           className="relative px-1 py-0.5 z-10 cursor-pointer focus:outline-none focus:text-yellow-dark hover:text-yellow-dark"
           onClick={() => dispatch({ type: 'setModeFast', payload: false })}
-          aria-pressed={!isModeFast}
           aria-label="Switch to slow mode"
+          aria-pressed={!isModeFast}
         >
           slow
         </button>
