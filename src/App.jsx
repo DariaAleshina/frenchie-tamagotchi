@@ -1,4 +1,5 @@
 import { GameProvider } from './contexts/GameContext';
+import { useVideoPreload } from './hooks/useVideoPreload';
 
 import Header from './components/Header';
 import HeroSection from './components/HeroSection';
@@ -8,6 +9,8 @@ import Footer from './components/Footer';
 import SeparationLine from './components/SeparationLine';
 
 function App() {
+  useVideoPreload();
+
   return (
     <>
       <GameProvider>
