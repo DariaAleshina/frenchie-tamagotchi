@@ -1,6 +1,6 @@
 import PetDisplay from '../PetDisplay';
 import ActionButtons from '../ActionButtons';
-function MiniGame() {
+function MiniGameApp() {
   return (
     <div className="bg-light w-full h-full flex flex-col justify-center items-center">
       <PetDisplay />
@@ -9,4 +9,4 @@ function MiniGame() {
   );
 }
 
-export default MiniGame;
+export default MiniGameApp;
