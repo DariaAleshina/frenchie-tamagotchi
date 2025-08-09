@@ -3,6 +3,8 @@ import ModeToggle from './ModeToggle';
 import NavLink from './NavLink';
 import MiniGameButton from './MiniGameButton';
 
+const isPiPPossible = 'documentPictureInPicture' in window;
+
 function Header() {
   return (
     <header>
@@ -12,7 +14,7 @@ function Header() {
         </nav>
         <div className="flex gap-10">
           <ModeToggle />
-          <MiniGameButton />
+          {isPiPPossible ? <MiniGameButton /> : null}
         </div>
       </div>
       <Heading />

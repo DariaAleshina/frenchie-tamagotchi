@@ -1,27 +1,28 @@
-// function openMiniGame() {
-//   window.open(
-//     '/',
-//     'MiniFrenchie',
-//     'width=360,height=450,resizable=no, left=100, top=100, resizable=yes, scrollbars=no, toolbar=no, menubar=no, location=no, status=no'
-//   );
-// }
+import ReactDOM from 'react-dom/client';
+import MiniGame from './pop-up/MiniGame';
+import { GameProvider } from '../contexts/GameContext';
 
 async function openPiPGame() {
-  if (!('documentPictureInPicture' in window)) {
-    alert('Your browser does not support Document Picture-in-Picture.');
-    return;
-  }
-
   // Open PiP window
   const pipWindow = await documentPictureInPicture.requestWindow({
     width: 400,
     height: 300,
   });
+  if (!pipWindow) return;
 
-  // Inject content
-  pipWindow.document.body.innerHTML = `
-    <h3>Mini Frenchie 🐶</h3>
-  `;
+  // Inject Tailwind CSS link
+  const link = pipWindow.document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = '/src/index.css'; // in dev
+  // In production, replace with your built CSS path from dist
+  pipWindow.document.head.appendChild(link);
+
+  const root = ReactDOM.createRoot(pipWindow.document.body);
+  root.render(
+    <GameProvider>
+      <MiniGame />
+    </GameProvider>
+  );
 }
 
 function MiniGameButton() {
