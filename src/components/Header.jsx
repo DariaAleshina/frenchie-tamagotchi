@@ -1,6 +1,7 @@
 import Heading from './Heading';
 import ModeToggle from './ModeToggle';
 import NavLink from './NavLink';
+import MiniGameButton from './MiniGameButton';
 
 function Header() {
   return (
@@ -9,7 +10,10 @@ function Header() {
         <nav className="flex justify-center items-center">
           <NavLink linkToSection="game-rules">Game Rules</NavLink>
         </nav>
-        <ModeToggle />
+        <div className="flex gap-10">
+          <ModeToggle />
+          <MiniGameButton />
+        </div>
       </div>
       <Heading />
     </header>

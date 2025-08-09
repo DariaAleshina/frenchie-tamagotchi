@@ -6,7 +6,7 @@ function MiniGameButton() {
   return (
     <button
       className="relative cursor-pointer border-2 w-10 h-full"
-      onClick={openMiniGame}
+      onClick={() => {}}
     >
       <div className="bg-dark absolute w-1/2 h-1/2 right-0"></div>
     </button>
