@@ -1,36 +1,21 @@
-import { mediaAssets } from '../mediaAssets';
 import { stateList, statusMessage } from '../contentGameLogic';
+import { useGame } from '../contexts/GameContext';
+import Spinner from './Spinner';
+import { mediaAssets } from '../mediaAssets';
 
-export default function PetDisplay({
-  fullness,
-  happiness,
-  energy,
-  isGameOver,
-  activatedAction,
-}) {
-  const { video, img } = mediaAssets;
-  let activeState = 'normal';
+const { video, img } = mediaAssets;
 
-  if (isGameOver) activeState = 'gameOver';
-
-  if (!isGameOver) {
-    if (activatedAction) {
-      activeState = activatedAction;
-    } else {
-      if (happiness > 80) activeState = 'happy';
-      if (happiness <= 80) activeState = 'normal';
-      if (happiness <= 60 || energy <= 60 || fullness <= 50)
-        activeState = 'sad';
-      if (energy <= 40) activeState = 'tired';
-      if (fullness <= 50) activeState = 'hungry';
-    }
-  }
+export default function PetDisplay() {
+  const { petDisplayState } = useGame();
 
   return (
     <>
       <div className="relative flex flex-col justify-center items-center w-3/5 md:w-2xs aspect-square bg-yellow-3">
+        <Spinner />
         {stateList.map(state => {
-          const style = `w-full ${state === activeState ? 'block' : 'hidden'}`;
+          const style = `absolute w-full ${
+            state === petDisplayState ? 'block' : 'hidden'
+          }`;
           return state === 'gameOver' ? (
             <img
               className={style}
@@ -59,7 +44,9 @@ export default function PetDisplay({
           );
         })}
       </div>
-      <p className="font-anta lg:text-2xl">{statusMessage?.[activeState]}</p>
+      <p className="font-anta lg:text-2xl">
+        {statusMessage?.[petDisplayState]}
+      </p>
     </>
   );
 }

@@ -1,4 +1,8 @@
-function ModeToggle({ isModeFast, onModeChange }) {
+import { useGame } from '../contexts/GameContext';
+
+function ModeToggle() {
+  const { isModeFast, dispatch } = useGame();
+
   return (
     <div className="text-sm flex border-2 justify-between items-center p-0.5">
       <div className="relative z-0 flex justify-between items-center gap-1 overflow-hidden [transform-style:preserve-3d] [backface-visibility:hidden]">
@@ -11,15 +15,15 @@ function ModeToggle({ isModeFast, onModeChange }) {
         />
         <button
           className="relative px-1 py-0.5 z-10 cursor-pointer focus:outline-none focus:text-yellow-dark hover:text-yellow-dark"
-          onClick={() => onModeChange(false)}
-          aria-pressed={!isModeFast}
+          onClick={() => dispatch({ type: 'setModeFast', payload: false })}
           aria-label="Switch to slow mode"
+          aria-pressed={!isModeFast}
         >
           slow
         </button>
         <button
           className="relative px-1 py-0.5 z-10 cursor-pointer focus:outline-none focus:text-yellow-dark hover:text-yellow-dark"
-          onClick={() => onModeChange(true)}
+          onClick={() => dispatch({ type: 'setModeFast', payload: true })}
           aria-label="Switch to fast mode"
           aria-pressed={isModeFast}
         >
