@@ -46,6 +46,7 @@ function MiniGameButton() {
   return (
     <button
       className="relative cursor-pointer border-2 w-10 h-full"
+      aria-label="Open Mini Game in pop-up window"
       onClick={handleOpenPiPGame}
     >
       <div className="bg-dark absolute w-1/2 h-1/2 right-0"></div>

@@ -18,21 +18,31 @@ function ActionButtons() {
 
   return (
     <div className="flex gap-5">
-      <GameButton action={handlePlay} inactive={isGameOver || playDisabled}>
+      <GameButton
+        action={handlePlay}
+        inactive={isGameOver || playDisabled}
+        label="Play"
+      >
         Play 🎾
       </GameButton>{' '}
-      <GameButton action={handleRubs} inactive={isGameOver || rubsDisabled}>
+      <GameButton
+        action={handleRubs}
+        inactive={isGameOver || rubsDisabled}
+        label="Rub ears"
+      >
         Ear Rubs 🤲
       </GameButton>
       <GameButton
         action={handleSleep}
         inactive={isGameOver || sleepDisabled || energy > 60}
+        label="Let sleep"
       >
         Sleep 😴
       </GameButton>
       <GameButton
         action={handleFeed}
         inactive={isGameOver || feedDisabled || fullness > 60}
+        label="Feed"
       >
         Feed 🍖
       </GameButton>

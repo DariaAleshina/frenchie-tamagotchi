@@ -9,7 +9,11 @@ function ResetButton({ isSmall = false }) {
     isGameOver && 'bg-yellow-2'
   }`;
   return (
-    <button onClick={() => dispatch({ type: 'reset' })} className={style}>
+    <button
+      onClick={() => dispatch({ type: 'reset' })}
+      className={style}
+      aria-label="reset the game"
+    >
       {isSmall ? <ResetIcon /> : 'Reset the Game'}
     </button>
   );

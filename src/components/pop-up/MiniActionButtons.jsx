@@ -19,21 +19,31 @@ function MiniActionButtons() {
 
   return (
     <div className="flex flex-col justify-center items-center gap-2 p-2">
-      <GameButton action={handlePlay} inactive={isGameOver || playDisabled}>
+      <GameButton
+        action={handlePlay}
+        inactive={isGameOver || playDisabled}
+        label="Play"
+      >
         🎾
       </GameButton>
-      <GameButton action={handleRubs} inactive={isGameOver || rubsDisabled}>
+      <GameButton
+        action={handleRubs}
+        inactive={isGameOver || rubsDisabled}
+        label="Rub ears"
+      >
         🤲
       </GameButton>
       <GameButton
         action={handleSleep}
         inactive={isGameOver || sleepDisabled || energy > 60}
+        label="Let sleep"
       >
         😴
       </GameButton>
       <GameButton
         action={handleFeed}
         inactive={isGameOver || feedDisabled || fullness > 60}
+        label="Feed"
       >
         🍖
       </GameButton>
