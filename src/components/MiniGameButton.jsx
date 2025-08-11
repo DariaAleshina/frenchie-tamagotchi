@@ -2,6 +2,29 @@ import ReactDOM from 'react-dom/client';
 import MiniGameApp from './pop-up/MiniGameApp';
 import { GameProvider } from '../contexts/GameContext';
 
+function copyStyles(sourceDoc, targetDoc) {
+  Array.from(sourceDoc.styleSheets).forEach(styleSheet => {
+    try {
+      // CSS rules directly in <style> tags
+      if (styleSheet.cssRules) {
+        const newStyle = targetDoc.createElement('style');
+        Array.from(styleSheet.cssRules).forEach(rule => {
+          newStyle.appendChild(targetDoc.createTextNode(rule.cssText));
+        });
+        targetDoc.head.appendChild(newStyle);
+      } else if (styleSheet.href) {
+        // Linked CSS
+        const newLink = targetDoc.createElement('link');
+        newLink.rel = 'stylesheet';
+        newLink.href = styleSheet.href;
+        targetDoc.head.appendChild(newLink);
+      }
+    } catch (e) {
+      console.warn('Could not access stylesheet:', e);
+    }
+  });
+}
+
 async function handleOpenPiPGame() {
   const pipWindow = await documentPictureInPicture.requestWindow({
     width: 300,
@@ -9,11 +32,7 @@ async function handleOpenPiPGame() {
   });
   if (!pipWindow) return;
 
-  // Inject Tailwind CSS link
-  const link = pipWindow.document.createElement('link');
-  link.rel = 'stylesheet';
-  link.href = '/src/index.css'; // in dev - in production, replace with your built CSS path from dist!!!
-  pipWindow.document.head.appendChild(link);
+  copyStyles(document, pipWindow.document);
 
   const root = ReactDOM.createRoot(pipWindow.document.body);
   root.render(
