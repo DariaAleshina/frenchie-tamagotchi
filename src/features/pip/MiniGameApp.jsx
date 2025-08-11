@@ -1,4 +1,4 @@
-import PetView from '../PetView';
+import PetView from '../../components/PetView';
 import MiniActionButtons from './MiniActionButtons';
 function MiniGameApp() {
   return (

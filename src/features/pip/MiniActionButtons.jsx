@@ -1,6 +1,6 @@
 import { useGame } from '../../contexts/GameContext';
-import GameButton from '../GameButton';
-import ResetButton from '../ResetButton';
+import GameButton from '../../components/GameButton';
+import ResetButton from '../../components/ResetButton';
 
 function MiniActionButtons() {
   const {
