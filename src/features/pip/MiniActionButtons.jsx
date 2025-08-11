@@ -1,7 +1,8 @@
-import { useGame } from '../contexts/GameContext';
-import GameButton from './GameButton';
+import { useGame } from '../../contexts/GameContext';
+import GameButton from '../../components/GameButton';
+import ResetButton from '../../components/ResetButton';
 
-function ActionButtons() {
+function MiniActionButtons() {
   const {
     isGameOver,
     handleFeed,
@@ -17,37 +18,38 @@ function ActionButtons() {
   } = useGame();
 
   return (
-    <div className="flex gap-5">
+    <div className="flex flex-col justify-center items-center gap-2 p-2">
       <GameButton
         action={handlePlay}
         inactive={isGameOver || playDisabled}
         label="Play"
       >
-        Play 🎾
-      </GameButton>{' '}
+        🎾
+      </GameButton>
       <GameButton
         action={handleRubs}
         inactive={isGameOver || rubsDisabled}
         label="Rub ears"
       >
-        Ear Rubs 🤲
+        🤲
       </GameButton>
       <GameButton
         action={handleSleep}
         inactive={isGameOver || sleepDisabled || energy > 60}
         label="Let sleep"
       >
-        Sleep 😴
+        😴
       </GameButton>
       <GameButton
         action={handleFeed}
         inactive={isGameOver || feedDisabled || fullness > 60}
         label="Feed"
       >
-        Feed 🍖
+        🍖
       </GameButton>
+      <ResetButton isSmall={true} />
     </div>
   );
 }
 
-export default ActionButtons;
+export default MiniActionButtons;
