@@ -1,5 +1,6 @@
 import { useGame } from '../../contexts/GameContext';
 import GameButton from '../GameButton';
+import ResetButton from '../ResetButton';
 
 function MiniActionButtons() {
   const {
@@ -17,10 +18,10 @@ function MiniActionButtons() {
   } = useGame();
 
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col justify-center items-center gap-2 p-2">
       <GameButton action={handlePlay} inactive={isGameOver || playDisabled}>
         🎾
-      </GameButton>{' '}
+      </GameButton>
       <GameButton action={handleRubs} inactive={isGameOver || rubsDisabled}>
         🤲
       </GameButton>
@@ -36,6 +37,7 @@ function MiniActionButtons() {
       >
         🍖
       </GameButton>
+      <ResetButton isSmall={true} />
     </div>
   );
 }

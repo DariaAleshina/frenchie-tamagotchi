@@ -4,8 +4,8 @@ import { GameProvider } from '../contexts/GameContext';
 
 async function handleOpenPiPGame() {
   const pipWindow = await documentPictureInPicture.requestWindow({
-    width: 400,
-    height: 300,
+    width: 300,
+    height: 200,
   });
   if (!pipWindow) return;
 
