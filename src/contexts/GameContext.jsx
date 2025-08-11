@@ -6,7 +6,7 @@ const MAX_SCORE = 100;
 const INITIAL_SCORE = 80;
 
 const initialState = {
-  isModeFast: true,
+  isModeFast: false,
   fullness: INITIAL_SCORE,
   happiness: INITIAL_SCORE,
   energy: INITIAL_SCORE,

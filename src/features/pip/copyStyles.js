@@ -1,24 +1,3 @@
-// export function copyStyles(sourceDoc, targetDoc) {
-//     Array.from(sourceDoc.styleSheets).forEach(styleSheet => {
-//         try {
-//             if (styleSheet.cssRules) {
-//                 const newStyle = targetDoc.createElement('style');
-//                 Array.from(styleSheet.cssRules).forEach(rule => {
-//                     newStyle.appendChild(targetDoc.createTextNode(rule.cssText));
-//                 });
-//                 targetDoc.head.appendChild(newStyle);
-//             } else if (styleSheet.href) {
-//                 const newLink = targetDoc.createElement('link');
-//                 newLink.rel = 'stylesheet';
-//                 newLink.href = styleSheet.href;
-//                 targetDoc.head.appendChild(newLink);
-//             }
-//         } catch (e) {
-//             console.warn('Could not access stylesheet:', e);
-//         }
-//     });
-// }
-
 export function copyStyles(sourceDoc, targetDoc) {
     Array.from(sourceDoc.styleSheets).forEach(styleSheet => {
         try {
