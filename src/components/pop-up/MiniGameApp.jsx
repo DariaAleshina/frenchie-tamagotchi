@@ -1,10 +1,10 @@
 import PetDisplay from '../PetDisplay';
-import ActionButtons from '../ActionButtons';
+import MiniActionButtons from './MiniActionButtons';
 function MiniGameApp() {
   return (
-    <div className="bg-light w-full h-full flex flex-col justify-center items-center">
+    <div className="bg-light w-full h-full flex justify-center items-center">
       <PetDisplay />
-      <ActionButtons />
+      <MiniActionButtons />
     </div>
   );
 }
