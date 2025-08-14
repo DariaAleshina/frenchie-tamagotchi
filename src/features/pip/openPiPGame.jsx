@@ -14,8 +14,9 @@ export default async function openPiPGame() {
 
   const root = ReactDOM.createRoot(pipWindow.document.body);
   root.render(
-    <GameProvider>
+    <GameProvider isPiPInstance={true}>
       <MiniGameApp />
     </GameProvider>
   );
+  return pipWindow;
 }

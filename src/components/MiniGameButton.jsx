@@ -1,10 +1,18 @@
 import openPiPGame from '../features/pip/openPiPGame';
 
-function handleOpenMiniGame() {
-  openPiPGame();
-}
+const CONTROL_KEY = 'game-control';
 
 function MiniGameButton() {
+  async function handleOpenMiniGame() {
+    const pipWindow = await openPiPGame();
+    if (!pipWindow) return;
+    // dispatch({ type: 'setPiPOpened', payload: true });
+
+    pipWindow.addEventListener('pagehide', () => {
+      localStorage.setItem(CONTROL_KEY, 'MAIN');
+    });
+  }
+
   return (
     <button
       className="relative cursor-pointer border-2 w-10 h-full"

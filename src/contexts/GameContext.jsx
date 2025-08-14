@@ -1,9 +1,17 @@
-import { createContext, useContext, useEffect, useReducer } from 'react';
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from 'react';
 
 const GameContext = createContext();
 
 const MAX_SCORE = 100;
 const INITIAL_SCORE = 80;
+const STORAGE_KEY = 'tamagotchi';
+const CONTROL_KEY = 'game-control';
 
 const initialState = {
   isModeFast: false,
@@ -19,6 +27,8 @@ const initialState = {
 
 function reducer(state, action) {
   switch (action.type) {
+    case 'localStorageLoaded':
+      return { ...action.payload };
     case 'setModeFast':
       return { ...state, isModeFast: action.payload };
     case 'decreaseStats':
@@ -85,21 +95,32 @@ function reducer(state, action) {
   }
 }
 
-function GameProvider({ children }) {
-  const [
-    {
-      isModeFast,
-      fullness,
-      happiness,
-      energy,
-      activatedAction,
-      playDisabled,
-      rubsDisabled,
-      sleepDisabled,
-      feedDisabled,
-    },
-    dispatch,
-  ] = useReducer(reducer, initialState);
+function GameProvider({ children, isPiPInstance = false }) {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  const {
+    isModeFast,
+    fullness,
+    happiness,
+    energy,
+    activatedAction,
+    playDisabled,
+    rubsDisabled,
+    sleepDisabled,
+    feedDisabled,
+    isPiPOpened,
+  } = state;
+
+  useEffect(() => {
+    localStorage.setItem(CONTROL_KEY, `${isPiPInstance ? 'PIP' : 'MAIN'}`);
+  }, [isPiPInstance]);
+
+  // update local storage on each state change
+  useEffect(() => {
+    const controlView = localStorage.getItem(CONTROL_KEY);
+    if (controlView === 'PIP' && !isPiPInstance) return;
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  }, [state, isPiPInstance]);
 
   // setting speed based on mode
   const intervalReduceStatSecs = isModeFast ? 3 : 60;
