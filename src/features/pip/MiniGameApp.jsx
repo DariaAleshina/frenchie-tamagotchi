@@ -1,31 +1,32 @@
-import PetView from '../../components/PetView';
-import MiniActionButtons from './MiniActionButtons';
 import { useGame } from '../../contexts/GameContext';
 import { useEffect } from 'react';
 
-const STORAGE_KEY = 'tamagotchi';
+import PetView from '../../components/PetView';
+import MiniActionButtons from './MiniActionButtons';
 
-function loadGameState() {
-  const savedState = localStorage.getItem(STORAGE_KEY);
-  if (savedState) {
-    const parsed = JSON.parse(savedState);
-    // Validate and merge with default state to handle version changes
-    return { ...parsed };
-  }
-  localStorage.setItem(STORAGE_KEY, JSON.stringify({}));
-  return null;
-}
+import { loadFromLocalStorage } from '../../helpers/functions';
 
 function MiniGameApp() {
   const { dispatch } = useGame();
   // loading data from local storage
   useEffect(() => {
-    const savedState = { ...loadGameState() };
-    console.log(savedState);
+    const savedState = {
+      ...loadFromLocalStorage(),
+      isPiPOpened: true,
+      feedDisabled: false,
+      playDisabled: false,
+      sleepDisabled: false,
+      rubsDisabled: false,
+    };
 
     if (!savedState) return;
     dispatch({ type: 'localStorageLoaded', payload: savedState });
-    // dispatch({ type: 'setPiPOpened', payload: true });
+
+    if (savedState.activatedAction) {
+      setTimeout(() => {
+        dispatch({ type: 'stopAction' });
+      }, 3000);
+    }
   }, [dispatch]);
 
   return (

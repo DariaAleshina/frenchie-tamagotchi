@@ -1,17 +1,12 @@
+import { createContext, useContext, useEffect, useReducer } from 'react';
 import {
-  createContext,
-  useContext,
-  useEffect,
-  useReducer,
-  useState,
-} from 'react';
+  MAX_SCORE,
+  INITIAL_SCORE,
+  STORAGE_KEY,
+  CONTROL_KEY,
+} from '../helpers/constants';
 
 const GameContext = createContext();
-
-const MAX_SCORE = 100;
-const INITIAL_SCORE = 80;
-const STORAGE_KEY = 'tamagotchi';
-const CONTROL_KEY = 'game-control';
 
 const initialState = {
   isModeFast: false,
@@ -23,12 +18,15 @@ const initialState = {
   playDisabled: false,
   sleepDisabled: false,
   rubsDisabled: false,
+  isPiPOpened: false,
 };
 
 function reducer(state, action) {
   switch (action.type) {
     case 'localStorageLoaded':
       return { ...action.payload };
+    case 'setPiPOpened':
+      return { ...state, isPiPOpened: action.payload };
     case 'setModeFast':
       return { ...state, isModeFast: action.payload };
     case 'decreaseStats':
@@ -219,6 +217,7 @@ function GameProvider({ children, isPiPInstance = false }) {
         handleRubs,
         handleSleep,
         dispatch,
+        isPiPOpened,
       }}
     >
       {children}
