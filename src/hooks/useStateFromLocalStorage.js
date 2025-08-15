@@ -1,7 +1,6 @@
 
 import { useEffect } from "react";
 import { useGame } from "../contexts/GameContext";
-import { STORAGE_KEY } from "../helpers/constants";
 
 import { loadFromLocalStorage } from "../helpers/functions";
 
@@ -54,7 +53,6 @@ function useLocalStoragePIP() {
             }, 1000 * PLAY_ACTION_SECONDS);
         }
     }, [dispatch]);
-
 }
 
 export { useLocalStorageMain, useLocalStoragePIP }
