@@ -1,36 +1,14 @@
 import { useGame } from '../contexts/GameContext';
-import { useEffect } from 'react';
+import { useLocalStorageMain } from '../hooks/useStateFromLocalStorage';
 
 import ActionButtons from './ActionButtons';
 import ResetButton from './ResetButton';
 import PetDisplay from './PetDisplay';
 import StatBar from './StatBar';
 
-import { loadFromLocalStorage } from '../helpers/functions';
-
 function GameSection() {
-  const { isPiPOpened, dispatch } = useGame();
-  // loading data from local storage
-  useEffect(() => {
-    if (isPiPOpened) return;
-    const savedState = {
-      ...loadFromLocalStorage(),
-      isPiPOpened: false,
-      feedDisabled: false,
-      playDisabled: false,
-      sleepDisabled: false,
-      rubsDisabled: false,
-    };
-
-    if (!savedState) return;
-    dispatch({ type: 'localStorageLoaded', payload: savedState });
-
-    if (savedState.activatedAction) {
-      setTimeout(() => {
-        dispatch({ type: 'stopAction' });
-      }, 2000);
-    }
-  }, [dispatch, isPiPOpened]);
+  const { isPiPOpened } = useGame();
+  useLocalStorageMain(isPiPOpened);
 
   return (
     <section

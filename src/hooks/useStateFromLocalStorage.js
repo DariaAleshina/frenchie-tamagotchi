@@ -3,29 +3,47 @@ import { useEffect } from "react";
 import { useGame } from "../contexts/GameContext";
 import { STORAGE_KEY } from "../helpers/constants";
 
-function loadGameState() {
-    const savedState = localStorage.getItem(STORAGE_KEY);
-    if (savedState) {
-        const parsed = JSON.parse(savedState);
-        return { ...parsed };
-    }
-    return null;
-}
-function useStateFromLocalStorage(controlView = 'MAIN') {
-    const { dispatch, isPiPOpened } = useGame();
-    const setToOpened = controlView === 'PIP';
-    console.log(controlView, 'setToOpen:', setToOpened)
+import { loadFromLocalStorage } from "../helpers/functions";
+
+const PLAY_ACTION_SECONDS = 3;
+
+function useLocalStorageMain(isPiPOpened) {
+    const { dispatch } = useGame();
     useEffect(() => {
-        if (controlView === 'MAIN' && isPiPOpened) return;
-        const savedState = {
-            ...loadGameState(),
-            isPiPOpened: setToOpened,
+        if (isPiPOpened) return;
+
+        const stateFromLocalStorage = loadFromLocalStorage();
+        if (!stateFromLocalStorage) return;
+        const newState = {
+            ...stateFromLocalStorage,
+            isPiPOpened: false,
             feedDisabled: false,
             playDisabled: false,
             sleepDisabled: false,
             rubsDisabled: false,
         };
-        console.log(savedState);
+        dispatch({ type: 'localStorageLoaded', payload: newState });
+
+        if (stateFromLocalStorage.activatedAction) {
+            setTimeout(() => {
+                dispatch({ type: 'stopAction' });
+            }, 1000 * PLAY_ACTION_SECONDS);
+        }
+    }, [dispatch, isPiPOpened]);
+}
+
+function useLocalStoragePIP() {
+    const { dispatch } = useGame();
+    // loading data from local storage
+    useEffect(() => {
+        const savedState = {
+            ...loadFromLocalStorage(),
+            isPiPOpened: true,
+            feedDisabled: false,
+            playDisabled: false,
+            sleepDisabled: false,
+            rubsDisabled: false,
+        };
 
         if (!savedState) return;
         dispatch({ type: 'localStorageLoaded', payload: savedState });
@@ -33,11 +51,10 @@ function useStateFromLocalStorage(controlView = 'MAIN') {
         if (savedState.activatedAction) {
             setTimeout(() => {
                 dispatch({ type: 'stopAction' });
-            }, 3000);
+            }, 1000 * PLAY_ACTION_SECONDS);
         }
-    }, [dispatch, isPiPOpened, controlView, setToOpened]);
+    }, [dispatch]);
 
 }
 
-export default useStateFromLocalStorage
-
+export { useLocalStorageMain, useLocalStoragePIP }
